@@ -13,3 +13,5 @@ main.o : main.cpp
 
 clean:
 	\rm *.o *.*~ lab01.out
+
+
