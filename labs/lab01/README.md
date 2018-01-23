@@ -2,6 +2,7 @@
 
 ## What You Will Learn
 1. Basic Linux commands, for example _mkdir_, _cd_, _mv_, and _ls_.
+
 1. How to configure github for your cselabs account.
 2. How to _clone_ (create a local copy of an existing repo), _pull_ (get
    updates), and _push_ (make updates).
