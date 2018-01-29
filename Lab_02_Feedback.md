@@ -1,6 +1,6 @@
 ### Feedback for Lab 02
 
-Run on January 29, 15:26:57 PM.
+Run on January 29, 15:33:03 PM.
 
 
 ### Checking Directory Structures
@@ -32,8 +32,8 @@ Run on January 29, 15:26:57 PM.
 
 ### Test that code compiles and creates the exectuable
 
-+ Fail: make 'all' in directory '.': expect result=duck, timeout=5
-    make finished compiling target=all, directory=. with errors.
++ Pass: make 'all' in directory '.': expect result=duck, timeout=5
 
-
+    make successful.
+    Check duck exists...OK: result duck found
 
