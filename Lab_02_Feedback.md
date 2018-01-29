@@ -1,6 +1,6 @@
 ### Feedback for Lab 02
 
-Run on January 28, 21:46:11 PM.
+Run on January 28, 21:48:58 PM.
 
 
 ### Checking Directory Structures
@@ -25,7 +25,9 @@ Run on January 28, 21:46:11 PM.
 
 ### .gitignore set up properly
 
-+ Pass: Check that file/directory "duck" does not exist.
++ Fail: Check that file/directory "duck" does not exist.
+
+     "duck" found.
 
 + Pass: Check that no files with extension ".o" exist in directory "."
 
