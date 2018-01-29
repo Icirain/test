@@ -2,7 +2,7 @@
 #include <string>
 #include "mystery_duck.h"
 
-using std::count;
+using std::cout;
 using std::endl;
 using std::string;
 

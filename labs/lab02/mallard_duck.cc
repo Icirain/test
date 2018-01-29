@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include <string>j
+#include <string>
 #include "mallard_duck.h"
 
 using std::cout;

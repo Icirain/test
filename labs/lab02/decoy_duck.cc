@@ -8,7 +8,7 @@ using std::string;
 
 DecoyDuck :: DecoyDuck(){
   description_text_ = "a plastic decoy duck";
-  sound = "...";
+  sound_ = "...";
 }
 
 string DecoyDuck::get_description(){
