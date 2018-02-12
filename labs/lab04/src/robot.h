@@ -2,7 +2,7 @@
 #define LAB04_ROBOT_H_
 
 #include<string>
-using namespace std
+using namespace std;
 
 class Robot{
    public:
@@ -19,7 +19,9 @@ class Robot{
     private:
        double x;
        double y;
-       double radius;
-       double velocity;
-       double heading_angle;
-}
+       double radius_;
+       double velocity_;
+       double angle_;
+};
+
+#endif

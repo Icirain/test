@@ -1,19 +1,20 @@
 #include<string>
 #include "robot.h"
-using namespace std
+#include <cmath>
+using namespace std;
 
-void Robot::Robot(double radius, double x, double y){
-   this->radius = radius;
+Robot::Robot(double radius, double x, double y){
+   this->radius_ = radius;
    this->x = x;
    this->y = y;
 }
 
 double Robot::radius() const{
-  return this->radius;
+  return this->radius_;
 }
 
 void Robot::radius(double radius){
-  this->radius = radius;
+  this->radius_ = radius;
 }
 
 std::pair<double, double> Robot::position() const{
@@ -28,24 +29,24 @@ void Robot::position(std::pair<double, double> pos){
      this->y = pos.second;
 }
 
-double Robot::velocity(){
-   return this->velocity;
+double Robot::velocity() const{
+   return this->velocity_;
 }
 
 void Robot::velocity(double velocity){
-    this->velocity = velocity;
+    this->velocity_ = velocity;
 }
 
 double Robot::heading_angle() const{
-    return this->heading_angle;
+    return this->angle_;
 }
 
 void Robot::heading_angle(double angle){
-   this->heading_angle = angle;
+   this->angle_ = angle;
 }
 
 void Robot::UpdatePosition(double dt){
-   this->x +=  this->velocity*sin(dt);
-   this->y +=  this->velocity*cos(dt);
+   this->x +=  this->velocity()*sin(dt);
+   this->y +=  this->velocity()*cos(dt);
 }
 

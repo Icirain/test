@@ -7,10 +7,13 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "src/robot_viewer.h"
+//#include "src/robot_viewer.h"
+#include <iostream>
 #include "robot.h"
 
-using namespace std
+using namespace std;
+using std::cout;
+using std::endl;
 /*******************************************************************************
  * Non-Member Functions
  ******************************************************************************/
@@ -22,13 +25,13 @@ int main(int argc, char **argv) {
   //app->Run();
   //return 0;
 
-  Robot test = new Robot(1.0, 2.0, 2.0);
-  test.radius(2.0);
-  std::pair<double, double> pos = test.position();
-  test.velocity(4.9);
-  test.heading_angle(2.7);
-  cout<< test.velocity() <<"pos is "<<pos.first<<pos.second<<"angle is "<<
-     test.heading_angle()<<endl;
+  Robot* test = new Robot(1.0, 2.0, 2.0);
+  test->radius(2.0);
+  std::pair<double, double> pos = test->position();
+  test->velocity(4.9);
+  test->heading_angle(2.7);
+  cout<< test->velocity() <<"pos is "<<pos.first<<pos.second<<"angle is "<<
+     test->heading_angle()<<endl;
 
 
 
