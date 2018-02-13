@@ -1,6 +1,6 @@
 ### Feedback for Lab 04
 
-Run on February 12, 22:55:28 PM.
+Run on February 12, 23:54:48 PM.
 
 
 #### Necessary Files and Structure
@@ -28,7 +28,9 @@ Run on February 12, 22:55:28 PM.
 
 #### .gitignore configured properly
 
-+ Pass: Check that file/directory "build/bin/robotviewer" does not exist.
++ Fail: Check that file/directory "build/bin/robotviewer" does not exist.
+
+     "build/bin/robotviewer" found.
 
 + Pass: Check that no files with extension ".o" exist in directory "."
 
@@ -59,21 +61,21 @@ Run on February 12, 22:55:28 PM.
 
 + Fail: Cpplint checking for for Google C++ compliance
 
+Done processing src/robot.cc
+Done processing src/robot_viewer.cc
 Done processing src/main.cc
 Done processing src/robot_land.cc
-Done processing src/robot_viewer.cc
-Done processing src/robot.cc
-Done processing src/robot.h
-Done processing src/robot_viewer.h
 Done processing src/robot_land.h
-Total errors found: 10src/robot_viewer.cc:34:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-src/robot_viewer.cc:68:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:7:  Include the directory when naming .h files  [build/include] [4]
+Done processing src/robot_viewer.h
+Done processing src/robot.h
+Total errors found: 10src/robot.cc:7:  Include the directory when naming .h files  [build/include] [4]
 src/robot.cc:8:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
 src/robot.cc:76:  At least two spaces is best between code and comments  [whitespace/comments] [2]
-src/robot.h:11:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
-src/robot.h:37:  At least two spaces is best between code and comments  [whitespace/comments] [2]
+src/robot_viewer.cc:34:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+src/robot_viewer.cc:68:  Missing space before {  [whitespace/braces] [5]
+src/robot_land.h:15:  Include the directory when naming .h files  [build/include] [4]
 src/robot_viewer.h:7:  #ifndef header guard has wrong style, please use: LABS_LAB04_SRC_ROBOT_VIEWER_H_  [build/header_guard] [5]
 src/robot_viewer.h:233:  #endif line should be "#endif  // LABS_LAB04_SRC_ROBOT_VIEWER_H_"  [build/header_guard] [5]
-src/robot_land.h:15:  Include the directory when naming .h files  [build/include] [4]
+src/robot.h:11:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
+src/robot.h:37:  At least two spaces is best between code and comments  [whitespace/comments] [2]
 
