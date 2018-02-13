@@ -4,7 +4,16 @@
 #include<string>
 using namespace std;
 
+
 class Robot{
+   private:
+    double x_;
+    double y_;
+    double radius_;
+    double velocity_;
+    double angle_;
+    double center_x_;
+    double center_y_;
    public:
        Robot(double radius, double x, double y);
        double radius() const;
@@ -16,12 +25,11 @@ class Robot{
        double heading_angle() const;
        void heading_angle(double angle);
        void UpdatePosition(double dt);
-    private:
-       double x;
-       double y;
-       double radius_;
-       double velocity_;
-       double angle_;
+       void UpdateHeadingAngle();
+
+
 };
+
+
 
 #endif

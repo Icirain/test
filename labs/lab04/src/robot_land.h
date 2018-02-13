@@ -12,6 +12,7 @@
  ******************************************************************************/
 #include <cmath>
 #include <iostream>
+#include "robot.h"
 
 /*******************************************************************************
  * Class Definitions
@@ -168,7 +169,9 @@ class RobotLand {
   double circle_x(double t) { return 512 + 200.0 * cos(t); }
   double circle_y(double t) { return 350 + 200.0 * sin(t); }
 
-  double sim_time_{0.0};
+  double sim_time_{1.0};
+  Robot* test1 = new Robot(40, 512, 350);
+  Robot* test2 = new Robot(100, 512, 350);
 };
 
 #endif  // SRC_ROBOT_LAND_H_

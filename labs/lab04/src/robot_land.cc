@@ -8,6 +8,7 @@
  * Includes
  ******************************************************************************/
 #include "src/robot_land.h"
+#include <cmath>
 
 /*******************************************************************************
  * Member Functions
@@ -20,8 +21,9 @@ int RobotLand::get_num_robots(void) { return 2; }
 // Once the robot class is added, this getter should call the robot getters
 bool RobotLand::get_robot_pos(int id, double *x_pos, double *y_pos) {
   if (id == 0) {
-    *x_pos = circle_x(sim_time_);
-    *y_pos = circle_y(sim_time_);
+    test1->UpdatePosition(sim_time_);
+    *x_pos = test1->position().first;
+    *y_pos = test1->position().second;
     return true;
   } else if (id == 1) {
     // make this robot slower
@@ -41,13 +43,12 @@ bool RobotLand::get_robot_vel(int id, double *x_vel, double *y_vel) {
   double xnow, ynow, xprev, yprev;
   double delta = 0.1;
   if (id == 0) {
-    xnow = circle_x(sim_time_);
-    ynow = circle_y(sim_time_);
-    xprev = circle_x(sim_time_ - delta);
-    yprev = circle_y(sim_time_ - delta);
+    double angle = sim_time_;
+    double velocity = test1->velocity();
 
-    *x_vel = xnow - xprev;
-    *y_vel = ynow - yprev;
+    *x_vel = velocity * cos(angle);
+    *y_vel = velocity * sin(angle);
+
     return true;
   } else if (id == 1) {
     // make this robot slower
