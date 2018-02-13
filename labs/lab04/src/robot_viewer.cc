@@ -90,7 +90,7 @@ void RobotViewer::DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
   // robot's circle
   nvgBeginPath(ctx);
   nvgCircle(ctx, 0.0, 0.0, rad);
-  nvgFillColor(ctx, nvgRGBA(200, 200, 200, 255));
+  nvgFillColor(ctx, nvgRGBA(200, 255, 200, 255));
   nvgFill(ctx);
   nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
   nvgStroke(ctx);

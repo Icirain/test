@@ -71,6 +71,8 @@ class RobotViewer : public GraphicsApp {
    */
   void OnPauseBtnPressed();
 
+  void OnColorChangeBtnPressed();
+
   /**
    * @brief Called each time the mouse moves on the screen within the GUI
    * window.

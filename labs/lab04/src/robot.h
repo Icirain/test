@@ -1,9 +1,11 @@
 #ifndef LAB04_ROBOT_H_
 #define LAB04_ROBOT_H_
 
-#include<string>
+#include <string>
+
 using namespace std;
 
+NAMESPACE_BEGIN(csci3081);
 
 class Robot{
    private:
@@ -30,6 +32,7 @@ class Robot{
 
 };
 
+NAMESPACE_END(csci3081);
 
 
 #endif

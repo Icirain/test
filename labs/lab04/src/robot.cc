@@ -1,12 +1,14 @@
 #include<string>
 #include "robot.h"
 #include <cmath>
-#define PI 3.141592653589793238462643383279502884
-
 using namespace std;
 
+NAMESPACE_BEGIN(csci3081);
+#define PI 3.141592653589793238462643383279502884
+
+
 Robot::Robot(double radius, double x, double y):
-x_(x), y_(y),radius_(radius) ,velocity_(0.001), angle_(PI/2),center_x_(x - radius), center_y_(y)
+x_(x), y_(y),radius_(radius) ,velocity_(0.005), angle_(PI/2),center_x_(x - radius), center_y_(y)
 {
 
 }

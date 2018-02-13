@@ -170,8 +170,8 @@ class RobotLand {
   double circle_y(double t) { return 350 + 200.0 * sin(t); }
 
   double sim_time_{1.0};
-  Robot* test1 = new Robot(40, 512, 350);
-  Robot* test2 = new Robot(100, 512, 350);
+  csci3081::Robot* test1 = new csci3081::Robot(40, 512, 350);
+  csci3081::Robot* test2 = new csci3081::Robot(100, 512, 350);
 };
 
 #endif  // SRC_ROBOT_LAND_H_
