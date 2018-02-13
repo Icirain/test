@@ -225,6 +225,7 @@ class RobotViewer : public GraphicsApp {
   RobotLand *robot_land_;
   bool paused_{false};
   nanogui::Button *pause_btn_;
+  int color_change_;
 };
 
 NAMESPACE_END(csci3081);

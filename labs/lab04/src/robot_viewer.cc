@@ -22,7 +22,8 @@ NAMESPACE_BEGIN(csci3081);
 RobotViewer::RobotViewer()
     : GraphicsApp(1024, 768, "Robot Simulation"),
       robot_land_(new RobotLand()),
-      pause_btn_(nullptr) {
+      pause_btn_(nullptr),
+      color_change_(200) {
   // Create a menu with 2 buttons for pausing and restarting the simulation.
   nanogui::FormHelper *gui = new nanogui::FormHelper(screen());
   nanogui::ref<nanogui::Window> window =
@@ -30,7 +31,7 @@ RobotViewer::RobotViewer()
   pause_btn_ =
       gui->addButton("Pause", std::bind(&RobotViewer::OnPauseBtnPressed, this));
   gui->addButton("Restart", std::bind(&RobotViewer::OnRestartBtnPressed, this));
-
+  gui->addButton("change_color", std::bind(&RobotViewer::OnColorChangeBtnPressed, this));
   screen()->performLayout();
 
   paused_ = false;
@@ -64,6 +65,11 @@ void RobotViewer::OnPauseBtnPressed() {
   }
 }
 
+void RobotViewer::OnColorChangeBtnPressed(){
+  this -> color_change_ += 10;
+  this -> color_change_ = this -> color_change_ % 256;
+}
+
 // this function requires an active nanovg drawing context (ctx),
 // so it should probably only be called from within DrawUsingNanoVG()
 void RobotViewer::DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
@@ -90,7 +96,7 @@ void RobotViewer::DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
   // robot's circle
   nvgBeginPath(ctx);
   nvgCircle(ctx, 0.0, 0.0, rad);
-  nvgFillColor(ctx, nvgRGBA(200, 255, 200, 255));
+  nvgFillColor(ctx, nvgRGBA(200, this->color_change_, 200, 255));
   nvgFill(ctx);
   nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
   nvgStroke(ctx);

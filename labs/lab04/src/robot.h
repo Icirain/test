@@ -5,7 +5,7 @@
 
 using namespace std;
 
-NAMESPACE_BEGIN(csci3081);
+namespace csci3081{
 
 class Robot{
    private:
@@ -31,8 +31,8 @@ class Robot{
 
 
 };
+}
 
-NAMESPACE_END(csci3081);
 
 
 #endif

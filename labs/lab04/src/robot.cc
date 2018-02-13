@@ -3,10 +3,10 @@
 #include <cmath>
 using namespace std;
 
-NAMESPACE_BEGIN(csci3081);
+
 #define PI 3.141592653589793238462643383279502884
 
-
+namespace csci3081{
 Robot::Robot(double radius, double x, double y):
 x_(x), y_(y),radius_(radius) ,velocity_(0.005), angle_(PI/2),center_x_(x - radius), center_y_(y)
 {
@@ -70,4 +70,5 @@ void Robot::UpdateHeadingAngle(){
      double delta_x = pos.first - this->center_x_;
      double delta_y = pos.second - this->center_y_;
      this->angle_ = PI/2 - atan2(delta_x, delta_y) ;
+}
 }
