@@ -4,8 +4,8 @@
  * @copyright 2017 3081 Staff, All rights reserved.
  */
 
-#ifndef SRC_ROBOT_LAND_H_
-#define SRC_ROBOT_LAND_H_
+#ifndef LABS_LAB04_SRC_ROBOT_LAND_H_
+#define LABS_LAB04_SRC_ROBOT_LAND_H_
 
 /*******************************************************************************
  * Includes
