@@ -28,8 +28,8 @@ bool RobotLand::get_robot_pos(int id, double *x_pos, double *y_pos) {
   } else if (id == 1) {
     // make this robot slower
     double t = 0.75 * sim_time_;
-    *x_pos = circle_x(t);
-    *y_pos = circle_y(t);
+    *x_pos = test2->position().first;
+    *y_pos = test2->position().second;
     return true;
   } else {
     return false;
@@ -53,13 +53,11 @@ bool RobotLand::get_robot_vel(int id, double *x_vel, double *y_vel) {
   } else if (id == 1) {
     // make this robot slower
     double t = 0.75 * sim_time_;
-    xnow = circle_x(t);
-    ynow = circle_y(t);
-    xprev = circle_x(t - delta);
-    yprev = circle_y(t - delta);
+    double angle = t;
+    double velocity = test2->velocity();
 
-    *x_vel = xnow - xprev;
-    *y_vel = ynow - yprev;
+    *x_vel = velocity * cos(angle);
+    *y_vel = velocity * sin(angle);
     return true;
   } else {
     return false;
