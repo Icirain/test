@@ -1,6 +1,6 @@
 ### Feedback for Lab 04
 
-Run on February 12, 20:11:19 PM.
+Run on February 12, 21:06:20 PM.
 
 
 #### Necessary Files and Structure
@@ -39,49 +39,91 @@ Run on February 12, 20:11:19 PM.
 
 #### make all functional
 
-+ Pass: make '../build/obj/src/robot.o' in directory 'src': expect result=build/obj/src/robot.o, timeout=500, extra_args='CS3081DIR=/project/f17c3081'
++ Fail: make '../build/obj/src/robot.o' in directory 'src': expect result=build/obj/src/robot.o, timeout=500, extra_args='CS3081DIR=/project/f17c3081'
+    make finished compiling target=../build/obj/src/robot.o, directory=src with errors:
 
-    make successful.
-    Check build/obj/src/robot.o exists...OK: result build/obj/src/robot.o found
+```shell
+In file included from robot.cc:2:0:
+robot.h:8:16: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_BEGIN(csci3081);
+                ^
+robot.h:35:14: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_END(csci3081);
+              ^
+robot.cc:6:16: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_BEGIN(csci3081);
+                ^
+make: *** [../build/obj/src/robot.o] Error 1
 
-+ Pass: make 'all' in directory '.': expect result=build/bin/robotviewer, timeout=500, extra_args='CS3081DIR=/project/f17c3081'
-
-    make successful.
-    Check build/bin/robotviewer exists...OK: result build/bin/robotviewer found
+```
 
 + Fail: make 'all' in directory '.': expect result=build/bin/robotviewer, timeout=500, extra_args='CS3081DIR=/project/f17c3081'
     make finished compiling target=all, directory=. with errors:
 
 ```shell
-main.cc: In function ‘int main(int, char**)’:
-main.cc:17:3: error: ‘Robot’ is not a member of ‘csci3081’
-   csci3081::Robot r(10, 100, 100);
-   ^
-main.cc:17:3: note: suggested alternative:
 In file included from ../src/robot_land.h:15:0,
-                 from ../src/robot_viewer.h:14,
-                 from main.cc:10:
-../src/robot.h:8:7: note:   ‘Robot’
- class Robot{
-       ^
-In file included from /usr/include/c++/5/cassert:43:0,
-                 from /project/f17c3081/include/nanogui/formhelper.h:25,
-                 from /project/f17c3081/include/nanogui/nanogui.h:37,
-                 from /project/f17c3081/include/MinGfx-1.0/graphics_app.h:18,
-                 from /project/f17c3081/include/MinGfx-1.0/mingfx.h:23,
-                 from ../src/robot_viewer.h:13,
-                 from main.cc:10:
-main.cc:19:33: error: ‘r’ was not declared in this scope
-   assert(10 == static_cast<int>(r.radius()));
-                                 ^
-make[1]: *** [../build/obj/src/main.o] Error 1
+                 from robot_land.cc:10:
+../src/robot.h:8:16: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_BEGIN(csci3081);
+                ^
+../src/robot.h:35:14: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_END(csci3081);
+              ^
+In file included from robot_land.cc:10:0:
+../src/robot_land.h:173:3: error: ‘csci3081’ does not name a type
+   csci3081::Robot* test1 = new csci3081::Robot(40, 512, 350);
+   ^
+../src/robot_land.h:174:3: error: ‘csci3081’ does not name a type
+   csci3081::Robot* test2 = new csci3081::Robot(100, 512, 350);
+   ^
+robot_land.cc: In member function ‘bool RobotLand::get_robot_pos(int, double*, double*)’:
+robot_land.cc:24:5: error: ‘test1’ was not declared in this scope
+     test1->UpdatePosition(sim_time_);
+     ^
+robot_land.cc: In member function ‘bool RobotLand::get_robot_vel(int, double*, double*)’:
+robot_land.cc:47:23: error: ‘test1’ was not declared in this scope
+     double velocity = test1->velocity();
+                       ^
+make[1]: *** [../build/obj/src/robot_land.o] Error 1
+make: *** [proj01] Error 2
+
+```
+
++ Fail: make 'all' in directory '.': expect result=build/bin/robotviewer, timeout=500, extra_args='CS3081DIR=/project/f17c3081'
+    make finished compiling target=all, directory=. with errors:
+
+```shell
+In file included from ../src/robot_land.h:15:0,
+                 from robot_land.cc:10:
+../src/robot.h:8:16: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_BEGIN(csci3081);
+                ^
+../src/robot.h:35:14: error: expected constructor, destructor, or type conversion before ‘(’ token
+ NAMESPACE_END(csci3081);
+              ^
+In file included from robot_land.cc:10:0:
+../src/robot_land.h:173:3: error: ‘csci3081’ does not name a type
+   csci3081::Robot* test1 = new csci3081::Robot(40, 512, 350);
+   ^
+../src/robot_land.h:174:3: error: ‘csci3081’ does not name a type
+   csci3081::Robot* test2 = new csci3081::Robot(100, 512, 350);
+   ^
+robot_land.cc: In member function ‘bool RobotLand::get_robot_pos(int, double*, double*)’:
+robot_land.cc:24:5: error: ‘test1’ was not declared in this scope
+     test1->UpdatePosition(sim_time_);
+     ^
+robot_land.cc: In member function ‘bool RobotLand::get_robot_vel(int, double*, double*)’:
+robot_land.cc:47:23: error: ‘test1’ was not declared in this scope
+     double velocity = test1->velocity();
+                       ^
+make[1]: *** [../build/obj/src/robot_land.o] Error 1
 make: *** [proj01] Error 2
 
 ```
 
 + Fail: Run unit test 'build/bin/robotviewer', extra_args='', allowed_fails=0
 
-Failed to create GLFW window
+./build/bin/robotviewer: error while loading shared libraries: libnanogui.so: cannot open shared object file: No such file or directory
 
 
 #### Google C++ Style
@@ -89,52 +131,52 @@ Failed to create GLFW window
 + Fail: Cpplint checking for for Google C++ compliance
 
 Done processing src/robot.cc
+Done processing src/robot_viewer.cc
 Done processing src/main.cc
 Done processing src/robot_land.cc
-Done processing src/robot_viewer.cc
-Done processing src/robot_viewer.h
 Done processing src/robot.h
 Done processing src/robot_land.h
+Done processing src/robot_viewer.h
 Total errors found: 42src/robot.cc:0:  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
 src/robot.cc:2:  Include the directory when naming .h files  [build/include] [4]
 src/robot.cc:3:  Found C++ system header after other header. Should be: robot.h, c system, c++ system, other.  [build/include_order] [4]
-src/robot.cc:6:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
-src/robot.cc:9:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-src/robot.cc:9:  Missing space after ,  [whitespace/comma] [3]
-src/robot.cc:10:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
-src/robot.cc:11:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
-src/robot.cc:11:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
-src/robot.cc:14:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:18:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:22:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:23:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-src/robot.cc:24:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+src/robot.cc:4:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
+src/robot.cc:11:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+src/robot.cc:11:  Missing space after ,  [whitespace/comma] [3]
+src/robot.cc:12:  { should almost always be at the end of the previous line  [whitespace/braces] [4]
+src/robot.cc:13:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
+src/robot.cc:13:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+src/robot.cc:16:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:20:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:24:  Missing space before {  [whitespace/braces] [5]
 src/robot.cc:25:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
 src/robot.cc:26:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-src/robot.cc:29:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:34:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:35:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-src/robot.cc:38:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:42:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:46:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:47:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-src/robot.cc:50:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:63:  Should have a space between // and comment  [whitespace/comments] [4]
-src/robot.cc:64:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
-src/robot.cc:66:  Missing space before {  [whitespace/braces] [5]
-src/robot.cc:70:  Extra space before last semicolon. If this should be an empty statement, use {} instead.  [whitespace/semicolon] [5]
-src/robot.cc:67:  Add #include <utility> for pair<>  [build/include_what_you_use] [4]
-src/robot_viewer.h:7:  #ifndef header guard has wrong style, please use: LABS_LAB04_SRC_ROBOT_VIEWER_H_  [build/header_guard] [5]
-src/robot_viewer.h:230:  #endif line should be "#endif  // LABS_LAB04_SRC_ROBOT_VIEWER_H_"  [build/header_guard] [5]
+src/robot.cc:27:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+src/robot.cc:28:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+src/robot.cc:31:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:36:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:37:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+src/robot.cc:40:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:44:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:48:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:49:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+src/robot.cc:52:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:65:  Should have a space between // and comment  [whitespace/comments] [4]
+src/robot.cc:66:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+src/robot.cc:68:  Missing space before {  [whitespace/braces] [5]
+src/robot.cc:72:  Extra space before last semicolon. If this should be an empty statement, use {} instead.  [whitespace/semicolon] [5]
+src/robot.cc:69:  Add #include <utility> for pair<>  [build/include_what_you_use] [4]
 src/robot.h:0:  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
 src/robot.h:1:  #ifndef header guard has wrong style, please use: LABS_LAB04_SRC_ROBOT_H_  [build/header_guard] [5]
-src/robot.h:35:  #endif line should be "#endif  // LABS_LAB04_SRC_ROBOT_H_"  [build/header_guard] [5]
-src/robot.h:5:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
-src/robot.h:9:  private: should be indented +1 space inside class Robot  [whitespace/indent] [3]
-src/robot.h:17:  public: should be indented +1 space inside class Robot  [whitespace/indent] [3]
-src/robot.h:30:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
-src/robot.h:22:  Add #include <utility> for pair<>  [build/include_what_you_use] [4]
+src/robot.h:38:  #endif line should be "#endif  // LABS_LAB04_SRC_ROBOT_H_"  [build/header_guard] [5]
+src/robot.h:6:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
+src/robot.h:11:  private: should be indented +1 space inside class Robot  [whitespace/indent] [3]
+src/robot.h:19:  public: should be indented +1 space inside class Robot  [whitespace/indent] [3]
+src/robot.h:32:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+src/robot.h:24:  Add #include <utility> for pair<>  [build/include_what_you_use] [4]
 src/robot_land.h:7:  #ifndef header guard has wrong style, please use: LABS_LAB04_SRC_ROBOT_LAND_H_  [build/header_guard] [5]
 src/robot_land.h:177:  #endif line should be "#endif  // LABS_LAB04_SRC_ROBOT_LAND_H_"  [build/header_guard] [5]
 src/robot_land.h:15:  Include the directory when naming .h files  [build/include] [4]
+src/robot_viewer.h:7:  #ifndef header guard has wrong style, please use: LABS_LAB04_SRC_ROBOT_VIEWER_H_  [build/header_guard] [5]
+src/robot_viewer.h:232:  #endif line should be "#endif  // LABS_LAB04_SRC_ROBOT_VIEWER_H_"  [build/header_guard] [5]
 
