@@ -1,0 +1,301 @@
+\hypertarget{classRobotViewer}{}\section{Robot\+Viewer Class Reference}
+\label{classRobotViewer}\index{Robot\+Viewer@{Robot\+Viewer}}
+
+
+An application that uses the cs3081 Simple\+Graphics library to open up a window that includes a few buttons for controlling the simulation and can be used to draw circles and other computer graphics.  
+
+
+
+
+{\ttfamily \#include $<$robot\+\_\+viewer.\+h$>$}
+
+
+
+Inheritance diagram for Robot\+Viewer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{classRobotViewer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Robot\+Viewer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{classRobotViewer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Robot\+Viewer} (const \hyperlink{classRobotViewer}{Robot\+Viewer} \&other)=delete\hypertarget{classRobotViewer_a722235e9d5cc60161e15dd189bf79566}{}\label{classRobotViewer_a722235e9d5cc60161e15dd189bf79566}
+
+\item 
+\hyperlink{classRobotViewer}{Robot\+Viewer} \& {\bfseries operator=} (const \hyperlink{classRobotViewer}{Robot\+Viewer} \&other)=delete\hypertarget{classRobotViewer_a4e7109141d452ea091e776d0069e03fb}{}\label{classRobotViewer_a4e7109141d452ea091e776d0069e03fb}
+
+\item 
+void {\bfseries Update\+Simulation} (double dt) override\hypertarget{classRobotViewer_a05c15913e55cd6925a089ce7c1fa5a55}{}\label{classRobotViewer_a05c15913e55cd6925a089ce7c1fa5a55}
+
+\item 
+void \hyperlink{classRobotViewer_a53b22985d65f9d2feb02deef32346030}{On\+Restart\+Btn\+Pressed} ()\hypertarget{classRobotViewer_a53b22985d65f9d2feb02deef32346030}{}\label{classRobotViewer_a53b22985d65f9d2feb02deef32346030}
+
+\begin{DoxyCompactList}\small\item\em Handle the user pressing the restart button on the G\+UI. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_ac1797fc2a436b9e176baf526ca9e9936}{On\+Pause\+Btn\+Pressed} ()\hypertarget{classRobotViewer_ac1797fc2a436b9e176baf526ca9e9936}{}\label{classRobotViewer_ac1797fc2a436b9e176baf526ca9e9936}
+
+\begin{DoxyCompactList}\small\item\em Handle the user pressing the pause button on the G\+UI. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_ae3b11d89a8f596d43bd7127ed7cfccf5}{On\+Mouse\+Move} (\+\_\+\+\_\+unused const Point2 \&pos, \+\_\+\+\_\+unused const Vector2 \&delta) override
+\begin{DoxyCompactList}\small\item\em Called each time the mouse moves on the screen within the G\+UI window. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_a51776dc0f3c06be3e459e2669a7bd3ff}{On\+Left\+Mouse\+Down} (\+\_\+\+\_\+unused const Point2 \&pos) override
+\begin{DoxyCompactList}\small\item\em Called each time the left mouse button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_a4b9372334e89152c2f8daf2cc2687943}{On\+Left\+Mouse\+Up} (\+\_\+\+\_\+unused const Point2 \&pos) override
+\begin{DoxyCompactList}\small\item\em Called each time the left mouse button is released. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_ab5420b89be50106eefcbc44dece71e74}{On\+Right\+Mouse\+Down} (\+\_\+\+\_\+unused const Point2 \&pos) override
+\begin{DoxyCompactList}\small\item\em Called each time the right mouse button is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_afe613a2bd8c13810327cf5344dac1a5e}{On\+Right\+Mouse\+Up} (\+\_\+\+\_\+unused const Point2 \&pos) override
+\begin{DoxyCompactList}\small\item\em Called each time the right mouse button is released. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_a5a5e4be05ae7a8b3d137a3388638ad63}{On\+Key\+Down} (\+\_\+\+\_\+unused const char $\ast$c, \+\_\+\+\_\+unused int modifiers) override
+\begin{DoxyCompactList}\small\item\em Called each time a character key is pressed. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_a7607dc80b550f1e1f2d88cccb21fe6af}{On\+Key\+Up} (\+\_\+\+\_\+unused const char $\ast$c, \+\_\+\+\_\+unused int modifiers) override
+\begin{DoxyCompactList}\small\item\em Called each time a character key is released. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_a76911b260748dc4b4d5187fd85e23b71}{On\+Special\+Key\+Down} (\+\_\+\+\_\+unused int key, \+\_\+\+\_\+unused int scancode, \+\_\+\+\_\+unused int modifiers) override
+\begin{DoxyCompactList}\small\item\em Called each time a special (non-\/alphabetic) key is pressed. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_a4d81343908c8e2ef4e48c6320b52ffdd}{On\+Special\+Key\+Up} (\+\_\+\+\_\+unused int key, \+\_\+\+\_\+unused int scancode, \+\_\+\+\_\+unused int modifiers) override
+\begin{DoxyCompactList}\small\item\em Called each time a special (non-\/alphabetic) key is released. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_ac67e2c6bc6f4ddc6c50d4c7e05d99662}{Draw\+Using\+Nano\+VG} (N\+V\+Gcontext $\ast$ctx) override
+\begin{DoxyCompactList}\small\item\em Draw the arena with all robots, obstacles using nanogui. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotViewer_accb905122b66ed5a084c77b078216083}{Draw\+Using\+Open\+GL} (void) override\hypertarget{classRobotViewer_accb905122b66ed5a084c77b078216083}{}\label{classRobotViewer_accb905122b66ed5a084c77b078216083}
+
+\begin{DoxyCompactList}\small\item\em Draw using Open\+GL. This callback had to be defined, but we are doing all drawing with nanovg in this application, so it is empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An application that uses the cs3081 Simple\+Graphics library to open up a window that includes a few buttons for controlling the simulation and can be used to draw circles and other computer graphics. 
+
+After constructing a new \hyperlink{classRobotViewer}{Robot\+Viewer}, call Run() to start and run the application. Run() will not return until the application window is closed. Make sure that you call cs3081\+::\+Init\+Graphics() before creating the \hyperlink{classRobotViewer}{Robot\+Viewer} app. Example\+:
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv) \{
+    cs3081::InitGraphics();
+    \hyperlink{classRobotViewer}{RobotViewer} *app = \textcolor{keyword}{new} \hyperlink{classRobotViewer}{RobotViewer}();
+    app->Run();
+    cs3081::ShutdownGraphics();
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCode}
+
+
+While the window is open Update\+Simulation() will be called repeatedly, once per frame. Fill this in to update your simulation or perform any other processing that should happen over time as the simulation progresses.
+
+Fill in the On$\ast$() methods as desired to respond to user input events.
+
+Fill in the Draw$\ast$() methods to draw graphics to the screen using either the nanovg library or raw Open\+GL. 
+
+\subsection{Member Function Documentation}
+\index{Robot\+Viewer@{Robot\+Viewer}!Draw\+Using\+Nano\+VG@{Draw\+Using\+Nano\+VG}}
+\index{Draw\+Using\+Nano\+VG@{Draw\+Using\+Nano\+VG}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{Draw\+Using\+Nano\+V\+G(\+N\+V\+Gcontext $\ast$ctx) override}{DrawUsingNanoVG(NVGcontext *ctx) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+Draw\+Using\+Nano\+VG (
+\begin{DoxyParamCaption}
+\item[{N\+V\+Gcontext $\ast$}]{ctx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}}\hypertarget{classRobotViewer_ac67e2c6bc6f4ddc6c50d4c7e05d99662}{}\label{classRobotViewer_ac67e2c6bc6f4ddc6c50d4c7e05d99662}
+
+
+Draw the arena with all robots, obstacles using nanogui. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ctx} & Context for nanogui. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Key\+Down@{On\+Key\+Down}}
+\index{On\+Key\+Down@{On\+Key\+Down}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Key\+Down(\+\_\+\+\_\+unused const char $\ast$c, \+\_\+\+\_\+unused int modifiers) override}{OnKeyDown(__unused const char *c, __unused int modifiers) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Key\+Down (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const char $\ast$}]{c, }
+\item[{\+\_\+\+\_\+unused int}]{modifiers}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_a5a5e4be05ae7a8b3d137a3388638ad63}{}\label{classRobotViewer_a5a5e4be05ae7a8b3d137a3388638ad63}
+
+
+Called each time a character key is pressed. 
+
+This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & Character representing a key that was pressed. \\
+\hline
+\mbox{\tt in}  & {\em modifiers} & Any modifier keys that were also pressed. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Key\+Up@{On\+Key\+Up}}
+\index{On\+Key\+Up@{On\+Key\+Up}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Key\+Up(\+\_\+\+\_\+unused const char $\ast$c, \+\_\+\+\_\+unused int modifiers) override}{OnKeyUp(__unused const char *c, __unused int modifiers) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Key\+Up (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const char $\ast$}]{c, }
+\item[{\+\_\+\+\_\+unused int}]{modifiers}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_a7607dc80b550f1e1f2d88cccb21fe6af}{}\label{classRobotViewer_a7607dc80b550f1e1f2d88cccb21fe6af}
+
+
+Called each time a character key is released. 
+
+This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & Character representing a key that was released. \\
+\hline
+\mbox{\tt in}  & {\em modifiers} & Any modifier keys that were held with the key. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Left\+Mouse\+Down@{On\+Left\+Mouse\+Down}}
+\index{On\+Left\+Mouse\+Down@{On\+Left\+Mouse\+Down}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Left\+Mouse\+Down(\+\_\+\+\_\+unused const Point2 \&pos) override}{OnLeftMouseDown(__unused const Point2 &pos) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Left\+Mouse\+Down (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const Point2 \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_a51776dc0f3c06be3e459e2669a7bd3ff}{}\label{classRobotViewer_a51776dc0f3c06be3e459e2669a7bd3ff}
+
+
+Called each time the left mouse button is clicked. 
+
+Origin is at the lower left of the window. This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pos} & The position of the release. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Left\+Mouse\+Up@{On\+Left\+Mouse\+Up}}
+\index{On\+Left\+Mouse\+Up@{On\+Left\+Mouse\+Up}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Left\+Mouse\+Up(\+\_\+\+\_\+unused const Point2 \&pos) override}{OnLeftMouseUp(__unused const Point2 &pos) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Left\+Mouse\+Up (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const Point2 \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_a4b9372334e89152c2f8daf2cc2687943}{}\label{classRobotViewer_a4b9372334e89152c2f8daf2cc2687943}
+
+
+Called each time the left mouse button is released. 
+
+Origin is at the lower left of the window. This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pos} & The position of the release. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Mouse\+Move@{On\+Mouse\+Move}}
+\index{On\+Mouse\+Move@{On\+Mouse\+Move}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Mouse\+Move(\+\_\+\+\_\+unused const Point2 \&pos, \+\_\+\+\_\+unused const Vector2 \&delta) override}{OnMouseMove(__unused const Point2 &pos, __unused const Vector2 &delta) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const Point2 \&}]{pos, }
+\item[{\+\_\+\+\_\+unused const Vector2 \&}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_ae3b11d89a8f596d43bd7127ed7cfccf5}{}\label{classRobotViewer_ae3b11d89a8f596d43bd7127ed7cfccf5}
+
+
+Called each time the mouse moves on the screen within the G\+UI window. 
+
+Origin is at the lower left of the window. This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pos} & The position of the release. \\
+\hline
+\mbox{\tt in}  & {\em delta} & How far the mouse has moved. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Right\+Mouse\+Down@{On\+Right\+Mouse\+Down}}
+\index{On\+Right\+Mouse\+Down@{On\+Right\+Mouse\+Down}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Right\+Mouse\+Down(\+\_\+\+\_\+unused const Point2 \&pos) override}{OnRightMouseDown(__unused const Point2 &pos) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Right\+Mouse\+Down (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const Point2 \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_ab5420b89be50106eefcbc44dece71e74}{}\label{classRobotViewer_ab5420b89be50106eefcbc44dece71e74}
+
+
+Called each time the right mouse button is clicked. 
+
+Origin is at the lower left of the window. This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pos} & The position of the release. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Right\+Mouse\+Up@{On\+Right\+Mouse\+Up}}
+\index{On\+Right\+Mouse\+Up@{On\+Right\+Mouse\+Up}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Right\+Mouse\+Up(\+\_\+\+\_\+unused const Point2 \&pos) override}{OnRightMouseUp(__unused const Point2 &pos) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Right\+Mouse\+Up (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused const Point2 \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_afe613a2bd8c13810327cf5344dac1a5e}{}\label{classRobotViewer_afe613a2bd8c13810327cf5344dac1a5e}
+
+
+Called each time the right mouse button is released. 
+
+Origin is at the lower left of the window. This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pos} & The position of the release. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Special\+Key\+Down@{On\+Special\+Key\+Down}}
+\index{On\+Special\+Key\+Down@{On\+Special\+Key\+Down}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Special\+Key\+Down(\+\_\+\+\_\+unused int key, \+\_\+\+\_\+unused int scancode, \+\_\+\+\_\+unused int modifiers) override}{OnSpecialKeyDown(__unused int key, __unused int scancode, __unused int modifiers) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Special\+Key\+Down (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused int}]{key, }
+\item[{\+\_\+\+\_\+unused int}]{scancode, }
+\item[{\+\_\+\+\_\+unused int}]{modifiers}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_a76911b260748dc4b4d5187fd85e23b71}{}\label{classRobotViewer_a76911b260748dc4b4d5187fd85e23b71}
+
+
+Called each time a special (non-\/alphabetic) key is pressed. 
+
+This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em key} & The key that was pressed. \\
+\hline
+\mbox{\tt in}  & {\em scancode} & The scancode corresponding to the key. \\
+\hline
+\mbox{\tt in}  & {\em modifiers} & Any modifier keys that were also pressed. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Viewer@{Robot\+Viewer}!On\+Special\+Key\+Up@{On\+Special\+Key\+Up}}
+\index{On\+Special\+Key\+Up@{On\+Special\+Key\+Up}!Robot\+Viewer@{Robot\+Viewer}}
+\subsubsection[{\texorpdfstring{On\+Special\+Key\+Up(\+\_\+\+\_\+unused int key, \+\_\+\+\_\+unused int scancode, \+\_\+\+\_\+unused int modifiers) override}{OnSpecialKeyUp(__unused int key, __unused int scancode, __unused int modifiers) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Viewer\+::\+On\+Special\+Key\+Up (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+\_\+unused int}]{key, }
+\item[{\+\_\+\+\_\+unused int}]{scancode, }
+\item[{\+\_\+\+\_\+unused int}]{modifiers}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}\hypertarget{classRobotViewer_a4d81343908c8e2ef4e48c6320b52ffdd}{}\label{classRobotViewer_a4d81343908c8e2ef4e48c6320b52ffdd}
+
+
+Called each time a special (non-\/alphabetic) key is released. 
+
+This function is a stub.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em key} & The key that was released. \\
+\hline
+\mbox{\tt in}  & {\em scancode} & The scancode corresponding to the key. \\
+\hline
+\mbox{\tt in}  & {\em modifiers} & Any modifier keys that were also pressed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{robot__viewer_8h}{robot\+\_\+viewer.\+h}\item 
+src/\hyperlink{robot__viewer_8cc}{robot\+\_\+viewer.\+cc}\end{DoxyCompactItemize}
