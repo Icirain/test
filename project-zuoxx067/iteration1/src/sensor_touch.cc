@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "src/sensor_touch.h"
+#include "src/base.h"
 
 /*******************************************************************************
  * Namespaces
@@ -24,6 +25,13 @@ void SensorTouch::HandleCollision(
   __unused EntityType object_type,
   __unused ArenaEntity * object) {
   output_ = true;
+  if(object_type == kBase){
+  	Base* temp_refer = dynamic_cast<Base*> (object);
+    if(temp_refer){
+    	temp_refer->set_captured(true);
+    }
+  	temp_refer = NULL;
+  }
 }
 
 NAMESPACE_END(csci3081);
