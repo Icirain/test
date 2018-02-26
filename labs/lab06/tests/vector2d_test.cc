@@ -14,12 +14,13 @@ TO THE LAB DOCUMENT.
  ******************************************************************************/
 #ifdef FEEDBACK_TEST_01
 
+#define Pi 4*atan(1)
 /************************************************************************
 * SETUP
 *************************************************************************/
 class VectorTest : public ::testing::Test {
  public:
-   VectorTest():v2(1,2) {}
+   VectorTest():v2(1,2), v4(0.0) {}
  protected:
    virtual void SetUp() {
      v3.set_x(0.2);
@@ -40,6 +41,7 @@ class VectorTest : public ::testing::Test {
    Vector2d v1;
    Vector2d v2;
    Vector2d v3;
+   Vector2d v4;
 
    // vector in each quadrant
    Vector2d v_q0;
@@ -68,6 +70,10 @@ TEST_F(VectorTest,ConstructorwithInput){
 
 // constructor with input (double theta)
 // >>>>>>> Write this test.
+TEST_F(VectorTest, ConstructorwithInput_theta){
+  EXPECT_EQ(v4.get_x(),1) <<"\nFAIL ConstructorwithInput_theta: x\n";
+  EXPECT_EQ(v4.get_y(),0) <<"\nFAIL ConstructorwithInput_theta: y\n";
+}
 
 // operator plus
 TEST_F(VectorTest,OperatorPlus){
@@ -78,6 +84,11 @@ TEST_F(VectorTest,OperatorPlus){
 
 // operator minus
 /// >>>>>> WRITE THIS TEST
+TEST_F(VectorTest, OperatorMinus){
+  Vector2d v_result = v2 - v3;
+  EXPECT_EQ(v_result.get_x(), 0.8) << "\nFAIL Op-: x\n";
+  EXPECT_EQ(v_result.get_y(), 0.8) << "\nFAIL Op-: y\n"; 
+}
 
 
 /************************************************************************
@@ -158,12 +169,28 @@ TEST_F(VectorTest,SetMagnitude){
   EXPECT_EQ(v_q1.GetMagnitude(),0) << "\nFAIL SetMagnitude: 0\n";
 }
 
+
 // Test of RotateByRadians
 // Consider the test cases (i.e. input). There are several you should use.
 // >>>>>>>> WRITE THIS TEST.
+TEST_F(VectorTest, RotateByRadians){
+   v1.RotateByRadians(Pi/4);
+   EXPECT_EQ(v1.get_x(), 0) << "\nFAIL RotateByRadians: Pi/4";
+   EXPECT_EQ(v1.get_y(), 0) << "\nFAIL RotateByRadians: Pi/4";
+   v2.RotateByRadians(Pi * 2);
+   EXPECT_EQ(v2.get_x(), 1) << "\nFAIL RotateByRadians: 2 * Pi_x";
+   EXPECT_EQ(v2.get_y(), 2) << "\nFAIL RotateByRadians: 2 * Pi_y";
+   v3.RotateByRadians(Pi);
+   EXPECT_EQ(v3.get_x(), -0.2) << "\nFAIL RotateByRadians: Pi_x";
+   EXPECT_EQ(v3.get_y(), 1.2) << "\nFAIL RotateByRadians: Pi_y";
+}
 
 // Test of DistanceBetween
 // >>>>>>>> WRITE THIS TEST.
+TEST_F(VectorTest, DistanceBetween){
+  double distance = v1.DistanceBetween(v2);
+  EXPECT_EQ(distance, pow(1 + 4, 0.5)) << "\nFAIL DistanceBetween";
+}
 
 
 #endif
