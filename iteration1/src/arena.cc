@@ -27,9 +27,10 @@ Arena::Arena(const struct arena_params *const params)
       factory_(new EntityFactory),
       entities_(),
       mobile_entities_(),
+      base_captured(0),
       game_status_(PLAYING) {
   AddRobot();
-  AddEntity(kBase, 1);
+  AddEntity(kBase, 3);
   AddEntity(kObstacle, params->n_obstacles);
 }
 
@@ -77,6 +78,7 @@ void Arena::UpdateEntitiesTimestep() {
    * velocities.
    * @TODO: Should this be just the mobile entities ??
    */
+  //int base_captured = 0;
   for (auto ent : entities_) {
     ent->TimestepUpdate(1);
   }
@@ -94,6 +96,13 @@ void Arena::UpdateEntitiesTimestep() {
       AdjustWallOverlap(ent1, wall);
       robot_->HandleCollision(wall);
     }
+    if (ent1->get_type() == kRobot){
+      Robot* temp_refer = dynamic_cast<Robot*> (ent1);
+      if (temp_refer->get_lives() <= 0){
+        set_game_status(1); 
+      }
+      temp_refer = NULL;
+    }
     /* Determine if that mobile entity is colliding with any other entity.
     * Adjust the position accordingly so they don't overlap.
     */
@@ -102,8 +111,16 @@ void Arena::UpdateEntitiesTimestep() {
       if (IsColliding(ent1, ent2)) {
         AdjustEntityOverlap(ent1, ent2);
         robot_->HandleCollision(ent2->get_type(), ent2);
+        if(ent2->get_type() == kBase){
+          this->base_captured++;
+          //std::cout<<this->base_captured<<std::endl;
+        }
       }
     }
+    if(this->base_captured == 3){
+      set_game_status(0);
+    }
+
   }
 }  // UpdateEntitiesTimestep()
 

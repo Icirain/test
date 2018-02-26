@@ -30,6 +30,7 @@ Base::Base() : ArenaImmobileEntity(), captured_(false) {
  ******************************************************************************/
 void Base::Reset() {
   set_pose(BASE_INIT_POS);
+  set_captured(false);
 } /* Reset */
 
 NAMESPACE_END(csci3081);

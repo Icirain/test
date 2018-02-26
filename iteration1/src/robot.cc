@@ -50,6 +50,10 @@ void Robot::Reset() {
 
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
+  if(object_type >= kRightWall && object_type <= kBottomWall){
+    int lives_remained = get_lives();
+    set_lives(lives_remained - 1);
+  }
 }
 
 void Robot::IncreaseSpeed() {
