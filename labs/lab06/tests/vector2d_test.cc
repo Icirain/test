@@ -20,7 +20,7 @@ TO THE LAB DOCUMENT.
 *************************************************************************/
 class VectorTest : public ::testing::Test {
  public:
-   VectorTest():v2(1,2), v4(0.0) {}
+   VectorTest():v2(1,2), v4(0.0),v5(Pi) {}
  protected:
    virtual void SetUp() {
      v3.set_x(0.2);
@@ -42,6 +42,7 @@ class VectorTest : public ::testing::Test {
    Vector2d v2;
    Vector2d v3;
    Vector2d v4;
+   Vector2d v5;
 
    // vector in each quadrant
    Vector2d v_q0;
@@ -71,8 +72,10 @@ TEST_F(VectorTest,ConstructorwithInput){
 // constructor with input (double theta)
 // >>>>>>> Write this test.
 TEST_F(VectorTest, ConstructorwithInput_theta){
-  EXPECT_EQ(v4.get_x(),1) <<"\nFAIL ConstructorwithInput_theta: x\n";
-  EXPECT_EQ(v4.get_y(),0) <<"\nFAIL ConstructorwithInput_theta: y\n";
+  EXPECT_EQ(v4.get_x(),1) <<"\nFAIL ConstructorwithInput_theta: 0 rad_x\n";
+  EXPECT_EQ(v4.get_y(),0) <<"\nFAIL ConstructorwithInput_theta: 0 rad_y\n";
+  EXPECT_EQ(v5.get_x(),-1) <<"\nFAIL ConstructorwithInput_theta: Pi_x\n";
+  EXPECT_EQ(v5.get_y(),0) <<"\nFAIL ConstructorwithInput_theta: Pi_y\n";
 }
 
 // operator plus
