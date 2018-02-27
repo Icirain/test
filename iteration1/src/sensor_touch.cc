@@ -30,8 +30,11 @@ void SensorTouch::HandleCollision(
     if(temp_refer){
     	temp_refer->set_captured(true);
     }
+    RgbColor new_color(kBlue, kBlue, kBlue);
+    object -> set_color(new_color);
   	temp_refer = NULL;
   }
+  
 }
 
 NAMESPACE_END(csci3081);
