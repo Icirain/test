@@ -107,7 +107,10 @@ void Arena::UpdateEntitiesTimestep() {
         if(ent2->get_type() == kBase){
           Base* temp_base_refer = dynamic_cast<Base*> (ent2);
           if(!temp_base_refer->IsCaptured()){
+            temp_base_refer->set_captured(true);
             this->base_captured++;
+            RgbColor new_color(kBlue, kBlue, kBlue);
+            ent2 -> set_color(new_color);
           }
           temp_base_refer = NULL;
         }

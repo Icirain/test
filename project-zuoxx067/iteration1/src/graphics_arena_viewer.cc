@@ -81,6 +81,7 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
 void GraphicsArenaViewer::OnNewGameBtnPressed(){
     paused_ = true;
     playing_button_->setCaption("Playing");
+    game_status_label_->setCaption("Game is executing");
     const struct arena_params *const params = new arena_params();
     Arena *new_arena = new Arena(params);
     Arena *temp;
