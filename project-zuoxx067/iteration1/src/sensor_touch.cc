@@ -27,15 +27,6 @@ void SensorTouch::HandleCollision(
   //if(object_type >= kRightWall && object_type <= kBottomWall) {
      output_ = true;
   //}
-  if(object_type == kBase){
-  	Base* temp_refer = dynamic_cast<Base*> (object);
-    if(temp_refer){
-    	temp_refer->set_captured(true);
-    }
-    RgbColor new_color(kBlue, kBlue, kBlue);
-    object -> set_color(new_color);
-  	temp_refer = NULL;
-  }
   
 }
 

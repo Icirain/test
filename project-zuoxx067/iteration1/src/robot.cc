@@ -60,6 +60,14 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
     int lives_remained = get_lives();
     set_lives(lives_remained <= 0? 0 : lives_remained - 1);
 
+  }else {
+    Base* temp_refer = dynamic_cast<Base*> (object);
+    if(temp_refer){
+      temp_refer->set_captured(true);
+    }
+    RgbColor new_color(kBlue, kBlue, kBlue);
+    object -> set_color(new_color);
+    temp_refer = NULL;
   }
   motion_handler_.set_velocity(0,0);
   //set_speed(0.0);
