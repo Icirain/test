@@ -112,6 +112,7 @@ class Robot : public ArenaMobileEntity {
   // Lives are decremented when the robot collides with anything.
   // When all the lives are gone, the game is lost.
   int lives_;
+  int mercy_time_;
 };
 
 NAMESPACE_END(csci3081);
