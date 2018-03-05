@@ -28,7 +28,8 @@ Arena::Arena(const struct arena_params *const params)
       entities_(),
       mobile_entities_(),
       game_status_(PLAYING),
-      base_captured(0) {
+      base_captured(0),
+      is_playing(false) {
   AddRobot();
   AddEntity(kBase, 3);
   AddEntity(kObstacle, params->n_obstacles);
@@ -64,7 +65,8 @@ void Arena::Reset() {
 // The primary driver of simulation movement. Called from the Controller
 // but originated from the graphics viewer.
 void Arena::AdvanceTime(double dt) {
-  if (!(dt > 0)) {
+  //std::cout<<is_playing<<std::endl;
+  if (!(dt > 0) || !is_playing) {
     return;
   }
   for (size_t i = 0; i < 1; ++i) {
@@ -102,12 +104,15 @@ void Arena::UpdateEntitiesTimestep() {
     for (auto &ent2 : entities_) {
       if (ent2 == ent1) { continue; }
       if (IsColliding(ent1, ent2)) {
+        if(ent2->get_type() == kBase){
+          Base* temp_base_refer = dynamic_cast<Base*> (ent2);
+          if(!temp_base_refer->IsCaptured()){
+            this->base_captured++;
+          }
+          temp_base_refer = NULL;
+        }
         robot_->HandleCollision(ent2->get_type(), ent2);
         AdjustEntityOverlap(ent1, ent2);
-        if(ent2->get_type() == kBase){
-          this->base_captured++;
-          //std::cout<<this->base_captured<<std::endl;
-        }
       }
     }
     if (ent1->get_type() == kRobot){
@@ -119,6 +124,9 @@ void Arena::UpdateEntitiesTimestep() {
     }
     if(this->base_captured == 3){
       set_game_status(WON);
+    }
+    if(robot_->get_lives() == 0){
+      set_game_status(LOST);
     }
 
   }
@@ -215,19 +223,27 @@ void Arena::AdjustEntityOverlap(ArenaMobileEntity * const mobile_e,
 void Arena::AcceptCommand(Communication com) {
   switch (com) {
     case(kIncreaseSpeed):
+    if(is_playing)
     robot_->IncreaseSpeed();
     break;
     case(kDecreaseSpeed):
+    if(is_playing)
     robot_->DecreaseSpeed();
     break;
     case(kTurnLeft):
+    if(is_playing)
     robot_->TurnLeft();
     break;
     case(kTurnRight):
+    if(is_playing)
     robot_->TurnRight();
     break;
     case(kPlay):
+    is_playing = true;
+    break;
     case(kPause):
+    is_playing = false;
+    break;
     case(kReset):
     case(kNone):
     default: break;

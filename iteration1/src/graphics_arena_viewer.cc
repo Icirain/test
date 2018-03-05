@@ -43,6 +43,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     gui->addButton(
       "Playing",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
+  game_status_label = gui->addGroup("Game is executing");
   screen()->performLayout();
 }
 
@@ -53,6 +54,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 // This is the primary driver for state change in the arena.
 // It will be called at each iteration of nanogui::mainloop()
 void GraphicsArenaViewer::UpdateSimulation(double dt) {
+
   controller_->AdvanceTime(dt);
 }
 
@@ -62,9 +64,13 @@ void GraphicsArenaViewer::UpdateSimulation(double dt) {
 void GraphicsArenaViewer::OnPlayingBtnPressed() {
   // Not implemented. Sample code provided to show how to implement.
   if (!paused_) {
+    paused_ = true;
+    controller_->AcceptCommunication(kPause);
     playing_button_->setCaption("Playing");
   } else {
-    playing_button_->setCaption("Paused");
+    paused_ = false;
+    controller_->AcceptCommunication(kPlay);
+    playing_button_->setCaption("Pause");
   }
 }
 
@@ -159,6 +165,16 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
           entity->get_name().c_str(), nullptr);
 }
 
+void GraphicsArenaViewer::DrawGameStatus(){
+  if(arena_->get_game_status() == WON){
+    game_status_label->setCaption("Game Won");
+  }
+  if(arena_->get_game_status() == LOST){
+    game_status_label->setCaption("Game Lost");
+  }
+  return;
+}
+
 void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   // initialize text rendering settings
   nvgFontSize(ctx, 18.0f);
@@ -170,6 +186,7 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
     DrawEntity(ctx, entity);
   } /* for(i..) */
   DrawRobot(ctx, arena_->robot());
+  DrawGameStatus();
 }
 
 NAMESPACE_END(csci3081);
