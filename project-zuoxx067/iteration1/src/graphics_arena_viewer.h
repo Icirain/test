@@ -86,6 +86,10 @@ class GraphicsArenaViewer : public GraphicsApp {
    */
   void OnPlayingBtnPressed();
 
+  void OnNewGameBtnPressed();
+
+  Arena* GetNewArenaAddress(){return arena_;}
+
   /**
    * @brief Called each time the mouse moves on the screen within the GUI
    * window.
@@ -232,7 +236,8 @@ class GraphicsArenaViewer : public GraphicsApp {
 
   // buttons
   nanogui::Button *playing_button_{nullptr};
-  nanogui::Label *game_status_label{nullptr};
+  nanogui::Button *new_game_button_{nullptr};
+  nanogui::Label *game_status_label_{nullptr};
 };
 
 NAMESPACE_END(csci3081);

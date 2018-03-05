@@ -45,6 +45,10 @@ void Controller::AdvanceTime(double dt) {
 }
 
 void Controller::AcceptCommunication(Communication com) {
+  if(com == kNewGame){
+    arena_ = viewer_ -> GetNewArenaAddress();
+    return;
+  }
   arena_->AcceptCommand(ConvertComm(com));
 }
 
