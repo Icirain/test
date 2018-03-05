@@ -95,6 +95,7 @@ class GraphicsArenaViewer : public GraphicsApp {
    * @param[in] pos The position of the release.
    * @param[in] delta How far the mouse has moved.
    */
+
   void OnMouseMove(__unused const Point2& pos,
                    __unused const Vector2& delta) override {};
 
@@ -223,12 +224,15 @@ class GraphicsArenaViewer : public GraphicsApp {
    */
   void DrawEntity(NVGcontext *ctx, const class ArenaEntity *const entity);
 
+  void DrawGameStatus();
+
   Controller *controller_;
   Arena *arena_;
-  bool paused_{false};
+  bool paused_{true};
 
   // buttons
   nanogui::Button *playing_button_{nullptr};
+  nanogui::Label *game_status_label{nullptr};
 };
 
 NAMESPACE_END(csci3081);

@@ -52,13 +52,13 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   if(object_type >= kRightWall && object_type <= kBottomWall){
     int lives_remained = get_lives();
-    set_lives(lives_remained - 1);
+    set_lives(lives_remained <= 0? 0 : lives_remained - 1);
     return;
   }else if (object_type == kObstacle){
     //std::cout<<"in this judgement2"<<std::endl;
     //std::cout << get_motion_handler().get_velocity().left << std::endl;
     int lives_remained = get_lives();
-    set_lives(lives_remained - 1);
+    set_lives(lives_remained <= 0? 0 : lives_remained - 1);
 
   }
   motion_handler_.set_velocity(0,0);

@@ -71,7 +71,11 @@ Communication Controller::ConvertComm(Communication com) {
       command_to_arena = kTurnRight;
       break;
     case (kPlay) :
+      command_to_arena = kPlay;
+      break;
     case (kPause) :
+      command_to_arena = kPause;
+      break;
     case (kNewGame) : 
     default: return kNone;
   }

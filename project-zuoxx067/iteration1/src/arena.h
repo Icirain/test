@@ -180,6 +180,7 @@ class Arena {
   // win/lose/playing state
   int game_status_;
   int base_captured;
+  bool is_playing;
 };
 
 NAMESPACE_END(csci3081);
