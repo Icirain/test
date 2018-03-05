@@ -96,7 +96,7 @@ class Robot : public ArenaMobileEntity {
   */
   void TurnLeft();
 
-  int get_lives() { return lives_; }
+  int get_lives() const { return lives_; }
 
   void set_lives(int l) { lives_ = l; }
 

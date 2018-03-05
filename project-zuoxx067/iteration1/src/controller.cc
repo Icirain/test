@@ -56,16 +56,26 @@ void Controller::AcceptCommunication(Communication com) {
   * @TODO: Complete the conversion code for all key presses.
   */
 Communication Controller::ConvertComm(Communication com) {
+  Communication command_to_arena;
   switch (com) {
     case (kKeyUp) :
+      command_to_arena = kIncreaseSpeed;
+      break;
     case (kKeyDown) :
+      command_to_arena = kDecreaseSpeed;
+      break;
     case (kKeyLeft) :
+      command_to_arena = kTurnLeft;
+      break;
     case (kKeyRight) :
+      command_to_arena = kTurnRight;
+      break;
     case (kPlay) :
     case (kPause) :
     case (kNewGame) : 
     default: return kNone;
   }
+  return command_to_arena;
 }
 
 NAMESPACE_END(csci3081);
