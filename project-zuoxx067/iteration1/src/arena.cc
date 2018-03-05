@@ -52,6 +52,7 @@ void Arena::AddRobot() {
 
 void Arena::AddEntity(EntityType type, int quantity) {
   for (int i = 0; i < quantity; i++) {
+    
     entities_.push_back(factory_->CreateEntity(type));
   }
 }
