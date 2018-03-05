@@ -34,7 +34,7 @@ void Obstacle::TimestepUpdate(unsigned int dt){
 }
 
 void Obstacle::HandleCollision(__unused EntityType object_type, __unused ArenaEntity * object) {
-
+   sensor_touch_->HandleCollision(object_type, object);
 }
 
 NAMESPACE_END(csci3081);

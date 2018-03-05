@@ -52,8 +52,14 @@ void Arena::AddRobot() {
 
 void Arena::AddEntity(EntityType type, int quantity) {
   for (int i = 0; i < quantity; i++) {
-    
-    entities_.push_back(factory_->CreateEntity(type));
+    ArenaEntity *new_entity = factory_->CreateEntity(type);
+    entities_.push_back(new_entity);
+    if(type == kObstacle) {
+      Obstacle* new_obstacle = dynamic_cast<Obstacle *>(new_entity);
+      mobile_entities_.push_back(new_obstacle);
+      new_obstacle = NULL;
+    }
+    new_entity = NULL;
   }
 }
 
@@ -93,7 +99,19 @@ void Arena::UpdateEntitiesTimestep() {
    /* Determine if any mobile entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.
    */
+  for(auto &ent0 : mobile_entities_) {
+    if(ent0->get_type() == kRobot)continue;
+    EntityType wall = GetCollisionWall(ent0);
+    if(kUndefined != wall) {
+      AdjustWallOverlap(ent0, wall);
+      Obstacle* temp_obstacle_refer_ = dynamic_cast<Obstacle *>(ent0);
+      temp_obstacle_refer_->HandleCollision(wall);
+    }
+  }
+  
+
   for (auto &ent1 : mobile_entities_) {
+    if(ent1->get_type() == kObstacle)continue;
     EntityType wall = GetCollisionWall(ent1);
     if (kUndefined != wall) {
       AdjustWallOverlap(ent1, wall);
