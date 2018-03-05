@@ -53,11 +53,17 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   if(object_type >= kRightWall && object_type <= kBottomWall){
     int lives_remained = get_lives();
     set_lives(lives_remained - 1);
+    return;
   }else if (object_type == kObstacle){
     //std::cout<<"in this judgement2"<<std::endl;
-    motion_handler_.set_velocity(0,0);
     //std::cout << get_motion_handler().get_velocity().left << std::endl;
+    int lives_remained = get_lives();
+    set_lives(lives_remained - 1);
+
   }
+  motion_handler_.set_velocity(0,0);
+  //set_speed(0.0);
+  
 }
 
 void Robot::IncreaseSpeed() {

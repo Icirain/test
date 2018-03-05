@@ -38,6 +38,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
           "Menu");
 
   gui->addGroup("Simulation Control");
+
   playing_button_ =
     gui->addButton(
       "Playing",
@@ -79,6 +80,16 @@ void GraphicsArenaViewer::OnSpecialKeyDown(int key,
     Communication key_value = kNone;
     switch (key) {
       case GLFW_KEY_LEFT:
+        key_value = kKeyLeft;
+        break;
+      case GLFW_KEY_RIGHT:
+        key_value = kKeyRight;
+        break;
+      case GLFW_KEY_UP:
+        key_value = kKeyUp;
+        break;
+      case GLFW_KEY_DOWN:
+        key_value = kKeyDown;
         break;
       default: {}
     }
@@ -113,7 +124,7 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
   nvgSave(ctx);
   nvgRotate(ctx, static_cast<float>(M_PI / 2.0));
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
-  nvgText(ctx, 0.0, 10.0, robot->get_name().c_str(), nullptr);
+  nvgText(ctx, 0.0, 10.0, (robot->get_name() + std::to_string(robot->get_lives())).c_str(), nullptr);
   nvgRestore(ctx);
   nvgRestore(ctx);
 }

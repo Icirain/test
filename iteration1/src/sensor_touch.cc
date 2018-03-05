@@ -24,7 +24,9 @@ NAMESPACE_BEGIN(csci3081);
 void SensorTouch::HandleCollision(
   __unused EntityType object_type,
   __unused ArenaEntity * object) {
-  output_ = true;
+  //if(object_type >= kRightWall && object_type <= kBottomWall) {
+     output_ = true;
+  //}
   if(object_type == kBase){
   	Base* temp_refer = dynamic_cast<Base*> (object);
     if(temp_refer){

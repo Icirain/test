@@ -27,8 +27,8 @@ Arena::Arena(const struct arena_params *const params)
       factory_(new EntityFactory),
       entities_(),
       mobile_entities_(),
-      base_captured(0),
-      game_status_(PLAYING) {
+      game_status_(PLAYING),
+      base_captured(0) {
   AddRobot();
   AddEntity(kBase, 3);
   AddEntity(kObstacle, params->n_obstacles);
@@ -96,29 +96,29 @@ void Arena::UpdateEntitiesTimestep() {
       AdjustWallOverlap(ent1, wall);
       robot_->HandleCollision(wall);
     }
-    if (ent1->get_type() == kRobot){
-      Robot* temp_refer = dynamic_cast<Robot*> (ent1);
-      if (temp_refer->get_lives() <= 0){
-        set_game_status(1); 
-      }
-      temp_refer = NULL;
-    }
     /* Determine if that mobile entity is colliding with any other entity.
     * Adjust the position accordingly so they don't overlap.
     */
     for (auto &ent2 : entities_) {
       if (ent2 == ent1) { continue; }
       if (IsColliding(ent1, ent2)) {
-        AdjustEntityOverlap(ent1, ent2);
         robot_->HandleCollision(ent2->get_type(), ent2);
+        AdjustEntityOverlap(ent1, ent2);
         if(ent2->get_type() == kBase){
           this->base_captured++;
           //std::cout<<this->base_captured<<std::endl;
         }
       }
     }
+    if (ent1->get_type() == kRobot){
+      Robot* temp_refer = dynamic_cast<Robot*> (ent1);
+      if (temp_refer->get_lives() <= 0){
+        set_game_status(LOST); 
+      }
+      temp_refer = NULL;
+    }
     if(this->base_captured == 3){
-      set_game_status(0);
+      set_game_status(WON);
     }
 
   }
@@ -170,8 +170,11 @@ bool Arena::IsColliding(
     double delta_x = other_e->get_pose().x - mobile_e->get_pose().x;
     double delta_y = other_e->get_pose().y - mobile_e->get_pose().y;
     double distance_between = sqrt(delta_x*delta_x + delta_y*delta_y);
-    return
-    (distance_between <= (mobile_e->get_radius() + other_e->get_radius()));
+    double delta = distance_between - (mobile_e->get_radius() + other_e->get_radius());
+    if(delta <= 0 && abs(delta) > 0.00000000001){
+       return true;
+    }
+    return false;
 }
 
 /* This is called when it is known that the two entities overlap.
@@ -194,9 +197,15 @@ void Arena::AdjustEntityOverlap(ArenaMobileEntity * const mobile_e,
     double distance_to_move =
       mobile_e->get_radius() + other_e->get_radius() - distance_between;
     double angle = atan(delta_y/delta_x);
-    mobile_e->set_position(
+    if(delta_x <= 0){
+      mobile_e->set_position(
       mobile_e->get_pose().x+cos(angle)*distance_to_move,
       mobile_e->get_pose().y+sin(angle)*distance_to_move);
+    }else{
+      mobile_e->set_position(
+      mobile_e->get_pose().x-cos(angle)*distance_to_move,
+      mobile_e->get_pose().y-sin(angle)*distance_to_move);
+    }
 }
 
 // Accept communication from the controller. Dispatching as appropriate.
