@@ -43,7 +43,11 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     gui->addButton(
       "Playing",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
-  game_status_label = gui->addGroup("Game is executing");
+  new_game_button_ = 
+    gui->addButton(
+      "New Game",
+      std::bind(&GraphicsArenaViewer::OnNewGameBtnPressed, this));
+  game_status_label_ = gui->addGroup("Game is executing");
   screen()->performLayout();
 }
 
@@ -72,6 +76,20 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
     controller_->AcceptCommunication(kPlay);
     playing_button_->setCaption("Pause");
   }
+}
+
+void GraphicsArenaViewer::OnNewGameBtnPressed(){
+    paused_ = true;
+    playing_button_->setCaption("Playing");
+    const struct arena_params *const params = new arena_params();
+    Arena *new_arena = new Arena(params);
+    Arena *temp;
+    temp = arena_;
+    arena_ = new_arena;
+    controller_->AcceptCommunication(kNewGame);
+    delete temp;
+    new_arena = NULL;
+
 }
 
 /** OnSpecialKeyDown is called when the user presses down on one of the
@@ -167,10 +185,10 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
 
 void GraphicsArenaViewer::DrawGameStatus(){
   if(arena_->get_game_status() == WON){
-    game_status_label->setCaption("Game Won");
+    game_status_label_->setCaption("Game Won");
   }
   if(arena_->get_game_status() == LOST){
-    game_status_label->setCaption("Game Lost");
+    game_status_label_->setCaption("Game Lost");
   }
   return;
 }
