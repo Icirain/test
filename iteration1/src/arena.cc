@@ -91,69 +91,85 @@ void Arena::UpdateEntitiesTimestep() {
   for (auto ent : entities_) {
     ent->TimestepUpdate(1);
   }
-
-  /*
-   * Check for win/loss
-   */
-
-   /* Determine if any mobile entity is colliding with wall.
-   * Adjust the position accordingly so it doesn't overlap.
-   */
-  for(auto &ent0 : mobile_entities_) {
-    if(ent0->get_type() == kRobot)continue;
-    EntityType wall = GetCollisionWall(ent0);
-    if(kUndefined != wall) {
-      AdjustWallOverlap(ent0, wall);
-      Obstacle* temp_obstacle_refer_ = dynamic_cast<Obstacle *>(ent0);
-      temp_obstacle_refer_->HandleCollision(wall);
+  for(auto &ent1 : mobile_entities_){
+    if(ent1 -> get_type() == kRobot) {
+      Robot* robot_entity_ = dynamic_cast<Robot*>(ent1);
+      UpdateEntitiesTimestepRobot(robot_entity_);
+      robot_entity_ = NULL;
+    }else{
+      Obstacle* obstacle_entity_ = dynamic_cast<Obstacle*>(ent1);
+      UpdateEntitiesTimestepObstacle(obstacle_entity_);
+      obstacle_entity_ = NULL;
     }
   }
-  
+  return;
 
-  for (auto &ent1 : mobile_entities_) {
-    if(ent1->get_type() == kObstacle)continue;
-    EntityType wall = GetCollisionWall(ent1);
-    if (kUndefined != wall) {
-      AdjustWallOverlap(ent1, wall);
-      robot_->HandleCollision(wall);
-    }
-    /* Determine if that mobile entity is colliding with any other entity.
-    * Adjust the position accordingly so they don't overlap.
-    */
-    for (auto &ent2 : entities_) {
-      if (ent2 == ent1) { continue; }
-      if (IsColliding(ent1, ent2)) {
-        if(ent2->get_type() == kBase){
-          Base* temp_base_refer = dynamic_cast<Base*> (ent2);
-          if(!temp_base_refer->IsCaptured()){
-            temp_base_refer->set_captured(true);
-            this->base_captured++;
-            RgbColor new_color(kBlue, kBlue, kBlue);
-            ent2 -> set_color(new_color);
-          }
-          temp_base_refer = NULL;
-        }
-        robot_->HandleCollision(ent2->get_type(), ent2);
-        AdjustEntityOverlap(ent1, ent2);
-      }
-    }
-    if (ent1->get_type() == kRobot){
-      Robot* temp_refer = dynamic_cast<Robot*> (ent1);
-      if (temp_refer->get_lives() <= 0){
-        set_game_status(LOST); 
-      }
-      temp_refer = NULL;
-    }
-    if(this->base_captured == 3){
-      set_game_status(WON);
-    }
-    if(robot_->get_lives() == 0){
-      set_game_status(LOST);
-    }
-
-  }
 }  // UpdateEntitiesTimestep()
 
+void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
+  EntityType wall = GetCollisionWall(robot_entity_);
+  if(kUndefined != wall) {
+    AdjustWallOverlap(robot_entity_, wall);
+    robot_entity_-> HandleCollision(wall);
+  }
+  for(auto &ent : entities_) {
+    if(ent == robot_entity_)continue;
+    if(!IsColliding(robot_entity_, ent))continue;
+    robot_entity_->HandleCollision(ent->get_type(), ent);
+    AdjustEntityOverlap(robot_entity_, ent);
+    if(ent->get_type() == kBase){
+      Base* temp_base_refer = dynamic_cast<Base*>(ent);
+      if(!temp_base_refer-> IsCaptured()) {
+        temp_base_refer->set_captured(true);
+        this->base_captured++;
+        RgbColor new_color(kBlue, kBlue, kBlue);
+        temp_base_refer->set_color(new_color);
+      }
+      temp_base_refer = NULL;
+      if(base_captured == 3){
+        set_game_status(WON);
+      }
+    }
+    if(ent->get_type() == kObstacle){
+      Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
+      temp_obstacle_refer->HandleCollision(robot_entity_->get_type(), robot_entity_);
+      temp_obstacle_refer = NULL;
+      if(robot_entity_->get_lives() == 0){
+        set_game_status(LOST);
+      }
+    }
+  }
+}
+
+void Arena::UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_) {
+  EntityType wall = GetCollisionWall(obstacle_entity_);
+  if(kUndefined != wall) {
+    AdjustWallOverlap(obstacle_entity_, wall);
+    obstacle_entity_->HandleCollision(wall);
+  }
+  for(auto &ent : entities_) {
+    if(ent == obstacle_entity_)continue;
+    if(!IsColliding(obstacle_entity_, ent))continue;
+    obstacle_entity_->HandleCollision(ent->get_type(), ent);
+    AdjustEntityOverlap(obstacle_entity_, ent);
+    if(ent->get_type() == kBase) {
+      continue;
+    }
+    if(ent->get_type() == kRobot) {
+      Robot* temp_robot_refer = dynamic_cast<Robot*>(ent);
+      temp_robot_refer->HandleCollision(obstacle_entity_->get_type(), obstacle_entity_);
+      if(temp_robot_refer->get_lives() == 0){
+        set_game_status(LOST);
+      }
+      temp_robot_refer = NULL;
+    }
+    if(ent->get_type() == kObstacle) {
+      Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
+      temp_obstacle_refer->HandleCollision(obstacle_entity_->get_type(), obstacle_entity_);
+      temp_obstacle_refer = NULL;
+    }
+  }
+}
 
 // Determine if the entity is colliding with a wall.
 // Always returns an entity type. If not collision, returns kUndefined.

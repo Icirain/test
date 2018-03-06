@@ -152,6 +152,10 @@ class Arena {
    */
   void UpdateEntitiesTimestep();
 
+  void UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_);
+
+  void UpdateEntitiesTimestepRobot(Robot* robot_entity_);
+
   std::vector<class ArenaEntity *> get_entities() const { return entities_; }
 
   double get_x_dim() { return x_dim_; }
