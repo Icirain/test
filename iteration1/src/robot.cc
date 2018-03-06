@@ -35,7 +35,10 @@ void Robot::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
   if(mercy_time_ > 0){
     mercy_time_ -= dt;
+    //set_color(mercy_time_%2 == 0? ROBOT_COLOR:DEFAULT_COLOR);
   }
+  if(mercy_time_ % 2 == 0)set_color(ROBOT_COLOR);
+  else set_color(MERCY_COLOR);
   motion_handler_.UpdateVelocity();
 
   // Use velocity and position to update position
