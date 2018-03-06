@@ -88,7 +88,7 @@ class GraphicsArenaViewer : public GraphicsApp {
 
   void OnNewGameBtnPressed();
 
-  Arena* GetNewArenaAddress(){return arena_;}
+  Arena* GetNewArenaAddress() {return arena_;}
 
   /**
    * @brief Called each time the mouse moves on the screen within the GUI

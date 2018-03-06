@@ -45,7 +45,7 @@ void Controller::AdvanceTime(double dt) {
 }
 
 void Controller::AcceptCommunication(Communication com) {
-  if(com == kNewGame){
+  if (com == kNewGame) {
     arena_ = viewer_ -> GetNewArenaAddress();
     return;
   }
@@ -80,7 +80,7 @@ Communication Controller::ConvertComm(Communication com) {
     case (kPause) :
       command_to_arena = kPause;
       break;
-    case (kNewGame) : 
+    case (kNewGame) :
     default: return kNone;
   }
   return command_to_arena;
