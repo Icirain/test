@@ -59,6 +59,7 @@ class Obstacle : public ArenaMobileEntity {
  private:
   MotionHandlerObstacle motion_handler_;
   MotionBehaviorDifferential motion_behavior_;
+  int arc_time_;
 };
 
 NAMESPACE_END(csci3081);

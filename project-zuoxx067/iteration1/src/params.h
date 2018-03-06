@@ -57,6 +57,8 @@
   { 500, 500 , 0}
 #define ROBOT_COLOR \
   { 0, 0, 255 }
+#define MERCY_COLOR \
+  { 1, 1, 90 }
 
 #define ROBOT_HEADING 270
 #define ROBOT_INIT_SPEED 0
