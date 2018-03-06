@@ -43,7 +43,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     gui->addButton(
       "Playing",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
-  new_game_button_ = 
+  new_game_button_ =
     gui->addButton(
       "New Game",
       std::bind(&GraphicsArenaViewer::OnNewGameBtnPressed, this));
@@ -58,7 +58,6 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 // This is the primary driver for state change in the arena.
 // It will be called at each iteration of nanogui::mainloop()
 void GraphicsArenaViewer::UpdateSimulation(double dt) {
-
   controller_->AdvanceTime(dt);
 }
 
@@ -78,7 +77,7 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
   }
 }
 
-void GraphicsArenaViewer::OnNewGameBtnPressed(){
+void GraphicsArenaViewer::OnNewGameBtnPressed() {
     paused_ = true;
     playing_button_->setCaption("Playing");
     game_status_label_->setCaption("Game is executing");
@@ -90,7 +89,6 @@ void GraphicsArenaViewer::OnNewGameBtnPressed(){
     controller_->AcceptCommunication(kNewGame);
     delete temp;
     new_arena = NULL;
-
 }
 
 /** OnSpecialKeyDown is called when the user presses down on one of the
@@ -149,7 +147,8 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
   nvgSave(ctx);
   nvgRotate(ctx, static_cast<float>(M_PI / 2.0));
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
-  nvgText(ctx, 0.0, 10.0, (robot->get_name() + std::to_string(robot->get_lives())).c_str(), nullptr);
+  nvgText(ctx, 0.0, 10.0, (robot->get_name() +
+  std::to_string(robot->get_lives())).c_str(), nullptr);
   nvgRestore(ctx);
   nvgRestore(ctx);
 }
@@ -184,11 +183,11 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
           entity->get_name().c_str(), nullptr);
 }
 
-void GraphicsArenaViewer::DrawGameStatus(){
-  if(arena_->get_game_status() == WON){
+void GraphicsArenaViewer::DrawGameStatus() {
+  if (arena_->get_game_status() == WON) {
     game_status_label_->setCaption("Game Won");
   }
-  if(arena_->get_game_status() == LOST){
+  if (arena_->get_game_status() == LOST) {
     game_status_label_->setCaption("Game Lost");
   }
   return;

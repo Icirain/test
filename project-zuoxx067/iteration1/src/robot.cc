@@ -33,12 +33,13 @@ Robot::Robot() :
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
-  if(mercy_time_ > 0){
+  if (mercy_time_ > 0) {
     mercy_time_ -= dt;
-    //set_color(mercy_time_%2 == 0? ROBOT_COLOR:DEFAULT_COLOR);
+    // set_color(mercy_time_%2 == 0? ROBOT_COLOR:DEFAULT_COLOR);
   }
-  if(mercy_time_ % 2 == 0)set_color(ROBOT_COLOR);
-  else set_color(MERCY_COLOR);
+  if (mercy_time_ % 2 == 0)set_color(ROBOT_COLOR);
+  else
+  set_color(MERCY_COLOR);
   motion_handler_.UpdateVelocity();
 
   // Use velocity and position to update position
@@ -57,17 +58,16 @@ void Robot::Reset() {
 
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
-  if(object_type >= kRightWall && object_type <= kBottomWall){
+  if (object_type >= kRightWall && object_type <= kBottomWall) {
     int lives_remained = get_lives();
     set_lives(lives_remained <= 0? 0 : lives_remained - 1);
     return;
-  }else if (object_type == kObstacle && mercy_time_ == 0){
+  } else if (object_type == kObstacle && mercy_time_ == 0) {
     int lives_remained = get_lives();
     set_lives(lives_remained <= 0? 0 : lives_remained - 1);
     mercy_time_ = 300;
   }
-  motion_handler_.set_velocity(0,0);
-  
+  motion_handler_.set_velocity(0, 0);
 }
 
 void Robot::IncreaseSpeed() {

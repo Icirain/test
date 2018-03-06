@@ -33,13 +33,13 @@ class MotionHandlerObstacle : public MotionHandler {
       : MotionHandler(ent) {this->set_velocity(3.0, 3.0); }
 
   MotionHandlerObstacle(const MotionHandlerObstacle& other) = default;
-  MotionHandlerObstacle& operator=(const MotionHandlerObstacle& other) = default;
+  MotionHandlerObstacle& operator=
+  (const MotionHandlerObstacle& other) = default;
 
   void UpdateVelocity() override;
-
-	
 };
 
 NAMESPACE_END(csci3081);
 
 #endif  // SRC_MOTION_HANDLER_OBSTACLE_H_
+
