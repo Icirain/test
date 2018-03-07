@@ -52,7 +52,7 @@ but this status report can make it faster for us.
 | **__Priority Level 3__** |
 | Even more obstacles | x |  |  |   |
 | Mercy invincibility is implemented | x |  |  |   |
-| For Fun |
+| For Fun |  |  |  |x| 
 | King of the Hill is implemented |  |  |  | x |
 
 ### Documentation
