@@ -92,7 +92,6 @@ class GraphicsArenaViewer : public GraphicsApp {
    * The old arena will be deleted inside function
    */
   void OnNewGameBtnPressed();
-  
   /*
    *@brief function used to get the address of arena monitored by viewer
    *@param[out] The reference of arena hold by viewer

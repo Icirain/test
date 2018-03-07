@@ -73,11 +73,13 @@ void Arena::Reset() {
 // but originated from the graphics viewer.
 void Arena::AdvanceTime(double dt) {
   // std::cout<<is_playing<<std::endl;
-  // If is_playing is false, which means the game is in paused status, the time will not be advanced
+  // If is_playing is false, which means
+  // the game is in paused status, the time will not be advanced
   if (!(dt > 0) || !is_playing) {
     return;
   }
-  // When the is_playing is true, all the entities will be updated and game is active
+  // When the is_playing is true,
+  // all the entities will be updated and game is active
   for (size_t i = 0; i < 1; ++i) {
     UpdateEntitiesTimestep();
   } /* for(i..) */
@@ -99,7 +101,9 @@ void Arena::UpdateEntitiesTimestep() {
       Robot* robot_entity_ = dynamic_cast<Robot*>(ent1);
       UpdateEntitiesTimestepRobot(robot_entity_);
       robot_entity_ = NULL;
-    } else { //If a obstacle confronted, UpdateEntitiesTimestepObstacle will be called 
+    } else {
+    // If a obstacle confronted,
+    // UpdateEntitiesTimestepObstacle will be called
       Obstacle* obstacle_entity_ = dynamic_cast<Obstacle*>(ent1);
       UpdateEntitiesTimestepObstacle(obstacle_entity_);
       obstacle_entity_ = NULL;
@@ -121,13 +125,15 @@ void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
     robot_entity_->HandleCollision(ent->get_type(), ent);
     AdjustEntityOverlap(robot_entity_, ent);
     if (ent->get_type() == kBase) {
-      // If collide entity is a base, status of base will be changed and base_captured will add one if it is an uncaptured base
+      // If collide entity is a base, status of base will
+      // be changed and base_captured will add one if it is an uncaptured base
       Base* temp_base_refer = dynamic_cast<Base*>(ent);
       if (!temp_base_refer-> IsCaptured()) {
         temp_base_refer->set_captured(true);
         this->base_captured++;
         RgbColor new_color(kBlue, kBlue, kBlue);
-        temp_base_refer->set_color(new_color); // change the color of base if captured
+        temp_base_refer->set_color(new_color);
+        // change the color of base if captured
       }
       temp_base_refer = NULL;
       // Check if all bases are captured, if so, game is won
@@ -137,7 +143,9 @@ void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
     }
     if (ent->get_type() == kObstacle) {
       Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
-      // If confronted a obstacle, HandleCollision function will be called by collided obstacle to let it seperated
+      // If confronted a obstacle, HandleCollision
+      // function will be called by collided obstacle
+      // to let it seperated
       temp_obstacle_refer->HandleCollision(robot_entity_->get_type(),
       robot_entity_);
       temp_obstacle_refer = NULL;
@@ -232,7 +240,8 @@ bool Arena::IsColliding(
     sqrt(delta_x*delta_x + delta_y*delta_y);
     double delta = distance_between -
     (mobile_e->get_radius() + other_e->get_radius());
-    // Since for a minimum distance AdjustEntityOverlap function can not help two collided entities recovered
+    // Since for a minimum distance AdjustEntityOverlap
+    // function can not help two collided entities recovered
     // A minimum interacted distance is set to avoid this mistake
     if (delta <= 0 && abs(delta) > 0.00000000001) {
        return true;

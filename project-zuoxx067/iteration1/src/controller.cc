@@ -45,7 +45,8 @@ void Controller::AdvanceTime(double dt) {
 }
 
 void Controller::AcceptCommunication(Communication com) {
-  // If new_game button pressed, arena reference in viewer_ will be updated to a new one
+  // If new_game button pressed,arena
+  // reference in viewer_ will be updated to a new one
   // So the reference in controller should be redirected as well
   if (com == kNewGame) {
     arena_ = viewer_ -> GetNewArenaAddress();

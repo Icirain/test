@@ -45,7 +45,6 @@ class MotionHandlerObstacle : public MotionHandler {
   MotionHandlerObstacle(const MotionHandlerObstacle& other) = default;
   MotionHandlerObstacle& operator=
   (const MotionHandlerObstacle& other) = default;
-  
   /**
   *Currently called from arena to update the speed and pose of obstacle.
   */

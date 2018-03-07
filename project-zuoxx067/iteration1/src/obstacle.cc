@@ -44,7 +44,11 @@ void Obstacle::TimestepUpdate(unsigned int dt) {
 void Obstacle::HandleCollision(__unused EntityType object_type,
                                __unused ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
-  if (object_type == kBase || object_type == kRobot) {
+  if (object_type == kBase || object_type == kRobot ||
+      object_type == kObstacle) {
+    // To implenment the arc of obstacle when collided.
+    // In a fixed time the two wheel' speed of obstacle
+    // will be different to have an arc
      motion_handler_.set_velocity(1.5, 3.0);
      arc_time_ = 40;
   }

@@ -39,14 +39,12 @@ std\+::string \hyperlink{classObstacle_a4642d3f61b6e74fd5a9c91bb263dfe18}{get\+\
 void {\bfseries Timestep\+Update} (unsigned int dt) override\hypertarget{classObstacle_adda549c77a5a67aa5423cb0f84b986df}{}\label{classObstacle_adda549c77a5a67aa5423cb0f84b986df}
 
 \item 
-void {\bfseries Handle\+Collision} (Entity\+Type object\+\_\+type, \hyperlink{classArenaEntity}{Arena\+Entity} $\ast$object=N\+U\+LL)\hypertarget{classObstacle_aa4e6d051a5fe8024d59425737baa381f}{}\label{classObstacle_aa4e6d051a5fe8024d59425737baa381f}
+void \hyperlink{classObstacle_aa4e6d051a5fe8024d59425737baa381f}{Handle\+Collision} (Entity\+Type object\+\_\+type, \hyperlink{classArenaEntity}{Arena\+Entity} $\ast$object=N\+U\+LL)\hypertarget{classObstacle_aa4e6d051a5fe8024d59425737baa381f}{}\label{classObstacle_aa4e6d051a5fe8024d59425737baa381f}
 
+\begin{DoxyCompactList}\small\item\em Make obstacle reversed when collision happens and move in an arc within fixed time. \end{DoxyCompactList}\item 
+\hyperlink{classMotionHandlerObstacle}{Motion\+Handler\+Obstacle} \hyperlink{classObstacle_a3733568b7023389407d9d8cea358b329}{get\+\_\+motion\+\_\+handler} ()
 \item 
-\hyperlink{classMotionHandlerObstacle}{Motion\+Handler\+Obstacle} {\bfseries get\+\_\+motion\+\_\+handler} ()\hypertarget{classObstacle_a3733568b7023389407d9d8cea358b329}{}\label{classObstacle_a3733568b7023389407d9d8cea358b329}
-
-\item 
-\hyperlink{classMotionBehaviorDifferential}{Motion\+Behavior\+Differential} {\bfseries get\+\_\+motion\+\_\+behavior} ()\hypertarget{classObstacle_aab71c0b9c09fa1c1429b3896a7adfb7c}{}\label{classObstacle_aab71c0b9c09fa1c1429b3896a7adfb7c}
-
+\hyperlink{classMotionBehaviorDifferential}{Motion\+Behavior\+Differential} \hyperlink{classObstacle_aab71c0b9c09fa1c1429b3896a7adfb7c}{get\+\_\+motion\+\_\+behavior} ()
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -55,6 +53,33 @@ void {\bfseries Handle\+Collision} (Entity\+Type object\+\_\+type, \hyperlink{cl
 Class representing an immobile obstacle within the \hyperlink{classArena}{Arena}. 
 
 Since obstacles are immobile, the \hyperlink{classObstacle}{Obstacle} class is very simple. 
+
+\subsection{Member Function Documentation}
+\index{Obstacle@{Obstacle}!get\+\_\+motion\+\_\+behavior@{get\+\_\+motion\+\_\+behavior}}
+\index{get\+\_\+motion\+\_\+behavior@{get\+\_\+motion\+\_\+behavior}!Obstacle@{Obstacle}}
+\subsubsection[{\texorpdfstring{get\+\_\+motion\+\_\+behavior()}{get_motion_behavior()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Motion\+Behavior\+Differential} Obstacle\+::get\+\_\+motion\+\_\+behavior (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classObstacle_aab71c0b9c09fa1c1429b3896a7adfb7c}{}\label{classObstacle_aab71c0b9c09fa1c1429b3896a7adfb7c}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em reference} & of obstacle\textquotesingle{}s motion behavior \\
+\hline
+\end{DoxyParams}
+\index{Obstacle@{Obstacle}!get\+\_\+motion\+\_\+handler@{get\+\_\+motion\+\_\+handler}}
+\index{get\+\_\+motion\+\_\+handler@{get\+\_\+motion\+\_\+handler}!Obstacle@{Obstacle}}
+\subsubsection[{\texorpdfstring{get\+\_\+motion\+\_\+handler()}{get_motion_handler()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Motion\+Handler\+Obstacle} Obstacle\+::get\+\_\+motion\+\_\+handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classObstacle_a3733568b7023389407d9d8cea358b329}{}\label{classObstacle_a3733568b7023389407d9d8cea358b329}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em reference} & of obstacle\textquotesingle{}s motion handler \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

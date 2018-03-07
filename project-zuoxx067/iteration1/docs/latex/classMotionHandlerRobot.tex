@@ -43,16 +43,16 @@ void \hyperlink{classMotionHandlerRobot_acd2cdb615d806dcf809142e84569ca9d}{Updat
 \begin{DoxyCompactList}\small\item\em Update the speed and the pose angle according to the sensor readings. \end{DoxyCompactList}\item 
 void \hyperlink{classMotionHandlerRobot_a93ea16501b7b8c0bd78edb2681aa3b6d}{Increase\+Speed} () override\hypertarget{classMotionHandlerRobot_a93ea16501b7b8c0bd78edb2681aa3b6d}{}\label{classMotionHandlerRobot_a93ea16501b7b8c0bd78edb2681aa3b6d}
 
-\begin{DoxyCompactList}\small\item\em Increase the overall speed of the entity by speed\+\_\+delta. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Increase the overall speed of the entity by speed\+\_\+delta. The maximum speed of robot will not exceed the set Max\+\_\+\+Speed. \end{DoxyCompactList}\item 
 void \hyperlink{classMotionHandlerRobot_a89e9b8b4e22fb021d7d67c817e66b7b2}{Decrease\+Speed} () override\hypertarget{classMotionHandlerRobot_a89e9b8b4e22fb021d7d67c817e66b7b2}{}\label{classMotionHandlerRobot_a89e9b8b4e22fb021d7d67c817e66b7b2}
 
-\begin{DoxyCompactList}\small\item\em Decrease the overall speed of the entity by speed\+\_\+delta. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Decrease the overall speed of the entity by speed\+\_\+delta. The speed will not be less than 0. \end{DoxyCompactList}\item 
 void \hyperlink{classMotionHandlerRobot_a4b18204b7c7f7f8a3cbb7f0e8ccf088f}{Turn\+Right} () override\hypertarget{classMotionHandlerRobot_a4b18204b7c7f7f8a3cbb7f0e8ccf088f}{}\label{classMotionHandlerRobot_a4b18204b7c7f7f8a3cbb7f0e8ccf088f}
 
-\begin{DoxyCompactList}\small\item\em Turn the entity to the right by angle\+\_\+delta (in degrees?) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Turn the entity to the right by angle\+\_\+delta (in degrees?). Speed of left side will not be less than 0. \end{DoxyCompactList}\item 
 void \hyperlink{classMotionHandlerRobot_a955ca2693c4188ffb08cfde469e58252}{Turn\+Left} () override\hypertarget{classMotionHandlerRobot_a955ca2693c4188ffb08cfde469e58252}{}\label{classMotionHandlerRobot_a955ca2693c4188ffb08cfde469e58252}
 
-\begin{DoxyCompactList}\small\item\em Turn the entity to the left by angle\+\_\+delta (in degrees?) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Turn the entity to the left by angle\+\_\+delta (in degrees?) Speed of right side will not be less than 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 

@@ -50,11 +50,9 @@ void \hyperlink{classArena_a51c1e99dfd9a618c6041fd22d0a11959}{Adjust\+Wall\+Over
 \begin{DoxyCompactList}\small\item\em Move the entity to the edge of the wall without overlap. Without this, entities tend to get stuck in walls. \end{DoxyCompactList}\item 
 void \hyperlink{classArena_a682ec81cb30e36e5bb801b3388bcb494}{Update\+Entities\+Timestep} ()
 \begin{DoxyCompactList}\small\item\em Update all entities for a single timestep. \end{DoxyCompactList}\item 
-void {\bfseries Update\+Entities\+Timestep\+Obstacle} (\hyperlink{classObstacle}{Obstacle} $\ast$obstacle\+\_\+entity\+\_\+)\hypertarget{classArena_a897f8f425ae505dbb5d9aaff59f72451}{}\label{classArena_a897f8f425ae505dbb5d9aaff59f72451}
-
+void \hyperlink{classArena_a897f8f425ae505dbb5d9aaff59f72451}{Update\+Entities\+Timestep\+Obstacle} (\hyperlink{classObstacle}{Obstacle} $\ast$obstacle\+\_\+entity\+\_\+)
 \item 
-void {\bfseries Update\+Entities\+Timestep\+Robot} (\hyperlink{classRobot}{Robot} $\ast$robot\+\_\+entity\+\_\+)\hypertarget{classArena_a694f8bbb2c7c235f83f33dbd4eac457f}{}\label{classArena_a694f8bbb2c7c235f83f33dbd4eac457f}
-
+void \hyperlink{classArena_a694f8bbb2c7c235f83f33dbd4eac457f}{Update\+Entities\+Timestep\+Robot} (\hyperlink{classRobot}{Robot} $\ast$robot\+\_\+entity\+\_\+)
 \item 
 std\+::vector$<$ class \hyperlink{classArenaEntity}{Arena\+Entity} $\ast$ $>$ {\bfseries get\+\_\+entities} () const \hypertarget{classArena_aabb4ffe05aefc71ee10d47b191963fe5}{}\label{classArena_aabb4ffe05aefc71ee10d47b191963fe5}
 
@@ -186,7 +184,31 @@ A pointer to the \hyperlink{classRobot}{Robot}.
 
 Update all entities for a single timestep. 
 
-First calls each entity\textquotesingle{}s Timestep\+Update method to update their speed, heading angle, and position. Then check for collisions between entities or between an entity and a wall. 
+First calls each entity\textquotesingle{}s Timestep\+Update method to update their speed, heading angle, and position. Then check for collisions between entities or between an entity and a wall. Since the obstacles are also mobile entities already. The collision status will be pretty complex. If the checked instance is \hyperlink{classObstacle}{Obstacle}, the function Update\+Entities\+Timestep\+Obstacle will be called inside to do corresponding check On the contrast if robot confronted, Update\+Entities\+Timestep\+Robot will be called. \index{Arena@{Arena}!Update\+Entities\+Timestep\+Obstacle@{Update\+Entities\+Timestep\+Obstacle}}
+\index{Update\+Entities\+Timestep\+Obstacle@{Update\+Entities\+Timestep\+Obstacle}!Arena@{Arena}}
+\subsubsection[{\texorpdfstring{Update\+Entities\+Timestep\+Obstacle(\+Obstacle $\ast$obstacle\+\_\+entity\+\_\+)}{UpdateEntitiesTimestepObstacle(Obstacle *obstacle_entity_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Arena\+::\+Update\+Entities\+Timestep\+Obstacle (
+\begin{DoxyParamCaption}
+\item[{{\bf Obstacle} $\ast$}]{obstacle\+\_\+entity\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classArena_a897f8f425ae505dbb5d9aaff59f72451}{}\label{classArena_a897f8f425ae505dbb5d9aaff59f72451}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em The} & address of \hyperlink{classObstacle}{Obstacle} waiting to be checked if collided with other entities The funtion will check collided stuff with obstacle. If it is a wall, the direction will be reversed. If it is a obstacle, both of them will finish an arc and seperated. If it is a robot, the speed of robot will be 0, lives remained declined. And obstacle will leave with an arc \\
+\hline
+\end{DoxyParams}
+\index{Arena@{Arena}!Update\+Entities\+Timestep\+Robot@{Update\+Entities\+Timestep\+Robot}}
+\index{Update\+Entities\+Timestep\+Robot@{Update\+Entities\+Timestep\+Robot}!Arena@{Arena}}
+\subsubsection[{\texorpdfstring{Update\+Entities\+Timestep\+Robot(\+Robot $\ast$robot\+\_\+entity\+\_\+)}{UpdateEntitiesTimestepRobot(Robot *robot_entity_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Arena\+::\+Update\+Entities\+Timestep\+Robot (
+\begin{DoxyParamCaption}
+\item[{{\bf Robot} $\ast$}]{robot\+\_\+entity\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classArena_a694f8bbb2c7c235f83f33dbd4eac457f}{}\label{classArena_a694f8bbb2c7c235f83f33dbd4eac457f}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em The} & address of robot waiting to be checked if collided with other entities The funtion will check collided stuff with obstacle. If it is a wall, the direction will be reversed. If it is a obstacle, the speed will be zero and one life lost \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
