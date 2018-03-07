@@ -85,9 +85,18 @@ class GraphicsArenaViewer : public GraphicsApp {
    * pressed again.
    */
   void OnPlayingBtnPressed();
-
+  /**
+   * @brief Handle the user pressing the new game button on the GUI.
+   *
+   * A new arena instance will be created and replace the old one 
+   * The old arena will be deleted inside function
+   */
   void OnNewGameBtnPressed();
-
+  
+  /*
+   *@brief function used to get the address of arena monitored by viewer
+   *@param[out] The reference of arena hold by viewer
+   */
   Arena* GetNewArenaAddress() {return arena_;}
 
   /**
@@ -228,11 +237,16 @@ class GraphicsArenaViewer : public GraphicsApp {
    */
   void DrawEntity(NVGcontext *ctx, const class ArenaEntity *const entity);
 
+  /**
+   * @brief Check the status of game repeatedly and write the status
+   */
   void DrawGameStatus();
 
   Controller *controller_;
   Arena *arena_;
   bool paused_{true};
+  // Bool variable used to track if the game is won or lost
+  bool is_game_over_{false};
 
   // buttons
   nanogui::Button *playing_button_{nullptr};

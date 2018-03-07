@@ -65,7 +65,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   } else if (object_type == kObstacle && mercy_time_ == 0) {
     int lives_remained = get_lives();
     set_lives(lives_remained <= 0? 0 : lives_remained - 1);
-    mercy_time_ = 300;
+    mercy_time_ = 36;
   }
   motion_handler_.set_velocity(0, 0);
 }

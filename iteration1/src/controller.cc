@@ -45,10 +45,13 @@ void Controller::AdvanceTime(double dt) {
 }
 
 void Controller::AcceptCommunication(Communication com) {
+  // If new_game button pressed, arena reference in viewer_ will be updated to a new one
+  // So the reference in controller should be redirected as well
   if (com == kNewGame) {
     arena_ = viewer_ -> GetNewArenaAddress();
     return;
   }
+  // In other cases, command translated and forward to the arena
   arena_->AcceptCommand(ConvertComm(com));
 }
 
@@ -57,7 +60,7 @@ void Controller::AcceptCommunication(Communication com) {
  * and this translate to a kIncreaseSpeed communication to Arena.
  */
 /**
-  * @TODO: Complete the conversion code for all key presses.
+  * Translate the command from viewer into appropriate one towards arena
   */
 Communication Controller::ConvertComm(Communication com) {
   Communication command_to_arena;

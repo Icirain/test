@@ -73,9 +73,11 @@ void Arena::Reset() {
 // but originated from the graphics viewer.
 void Arena::AdvanceTime(double dt) {
   // std::cout<<is_playing<<std::endl;
+  // If is_playing is false, which means the game is in paused status, the time will not be advanced
   if (!(dt > 0) || !is_playing) {
     return;
   }
+  // When the is_playing is true, all the entities will be updated and game is active
   for (size_t i = 0; i < 1; ++i) {
     UpdateEntitiesTimestep();
   } /* for(i..) */
@@ -92,11 +94,12 @@ void Arena::UpdateEntitiesTimestep() {
     ent->TimestepUpdate(1);
   }
   for (auto &ent1 : mobile_entities_) {
+    // If confronted a robot, UpdateEntitiesTimestepRobot will be called
     if (ent1 -> get_type() == kRobot) {
       Robot* robot_entity_ = dynamic_cast<Robot*>(ent1);
       UpdateEntitiesTimestepRobot(robot_entity_);
       robot_entity_ = NULL;
-    } else {
+    } else { //If a obstacle confronted, UpdateEntitiesTimestepObstacle will be called 
       Obstacle* obstacle_entity_ = dynamic_cast<Obstacle*>(ent1);
       UpdateEntitiesTimestepObstacle(obstacle_entity_);
       obstacle_entity_ = NULL;
@@ -107,6 +110,7 @@ void Arena::UpdateEntitiesTimestep() {
 
 void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
   EntityType wall = GetCollisionWall(robot_entity_);
+  // Process the conditio that collides with a wall
   if (kUndefined != wall) {
     AdjustWallOverlap(robot_entity_, wall);
     robot_entity_-> HandleCollision(wall);
@@ -117,27 +121,31 @@ void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
     robot_entity_->HandleCollision(ent->get_type(), ent);
     AdjustEntityOverlap(robot_entity_, ent);
     if (ent->get_type() == kBase) {
+      // If collide entity is a base, status of base will be changed and base_captured will add one if it is an uncaptured base
       Base* temp_base_refer = dynamic_cast<Base*>(ent);
       if (!temp_base_refer-> IsCaptured()) {
         temp_base_refer->set_captured(true);
         this->base_captured++;
         RgbColor new_color(kBlue, kBlue, kBlue);
-        temp_base_refer->set_color(new_color);
+        temp_base_refer->set_color(new_color); // change the color of base if captured
       }
       temp_base_refer = NULL;
+      // Check if all bases are captured, if so, game is won
       if (base_captured == 3) {
         set_game_status(WON);
       }
     }
     if (ent->get_type() == kObstacle) {
       Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
+      // If confronted a obstacle, HandleCollision function will be called by collided obstacle to let it seperated
       temp_obstacle_refer->HandleCollision(robot_entity_->get_type(),
       robot_entity_);
       temp_obstacle_refer = NULL;
-      if (robot_entity_->get_lives() == 0) {
-        set_game_status(LOST);
-      }
     }
+  }
+  // Check if robot has been dead
+  if (robot_entity_->get_lives() == 0) {
+    set_game_status(LOST);
   }
 }
 
@@ -150,6 +158,7 @@ void Arena::UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_) {
   for (auto &ent : entities_) {
     if (ent == obstacle_entity_)continue;
     if (!IsColliding(obstacle_entity_, ent))continue;
+    // Call the HandleCollision of obstacle to make necessary response
     obstacle_entity_->HandleCollision(ent->get_type(), ent);
     AdjustEntityOverlap(obstacle_entity_, ent);
     if (ent->get_type() == kBase) {
@@ -159,6 +168,7 @@ void Arena::UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_) {
       Robot* temp_robot_refer = dynamic_cast<Robot*>(ent);
       temp_robot_refer->HandleCollision(obstacle_entity_->get_type(),
         obstacle_entity_);
+      // Check if collided robot is dead
       if (temp_robot_refer->get_lives() == 0) {
         set_game_status(LOST);
       }
@@ -166,6 +176,7 @@ void Arena::UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_) {
     }
     if (ent->get_type() == kObstacle) {
       Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
+      // Both obstacles will leave with already set arc
       temp_obstacle_refer->HandleCollision(obstacle_entity_->get_type(),
         obstacle_entity_);
       temp_obstacle_refer = NULL;
@@ -221,6 +232,8 @@ bool Arena::IsColliding(
     sqrt(delta_x*delta_x + delta_y*delta_y);
     double delta = distance_between -
     (mobile_e->get_radius() + other_e->get_radius());
+    // Since for a minimum distance AdjustEntityOverlap function can not help two collided entities recovered
+    // A minimum interacted distance is set to avoid this mistake
     if (delta <= 0 && abs(delta) > 0.00000000001) {
        return true;
     }
@@ -266,8 +279,10 @@ void Arena::AcceptCommand(Communication com) {
   switch (com) {
     case(kIncreaseSpeed):
     if (is_playing)
+    // When this command received , the velocity of robot should be increased
     robot_->IncreaseSpeed();
     break;
+    // When this command received , the velocity of robot should be decreased
     case(kDecreaseSpeed):
     if (is_playing)
     robot_->DecreaseSpeed();
@@ -280,9 +295,11 @@ void Arena::AcceptCommand(Communication com) {
     if (is_playing)
     robot_->TurnRight();
     break;
+    // if play button pressed , the game will be active
     case(kPlay):
     is_playing = true;
     break;
+    // When pause button pressed, game will be paused
     case(kPause):
     is_playing = false;
     break;

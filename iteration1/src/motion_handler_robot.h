@@ -53,22 +53,22 @@ class MotionHandlerRobot : public MotionHandler {
   void UpdateVelocity() override;
 
   /**
-   * @brief Increase the overall speed of the entity by speed_delta.
+   * @brief Increase the overall speed of the entity by speed_delta. The maximum speed of robot will not exceed the set Max_Speed
    */
   void IncreaseSpeed() override;
 
   /**
-   * @brief Decrease the overall speed of the entity by speed_delta.
+   * @brief Decrease the overall speed of the entity by speed_delta. The speed will not be less than 0
    */
   void DecreaseSpeed() override;
 
   /**
-   * @brief Turn the entity to the right by angle_delta (in degrees?)
+   * @brief Turn the entity to the right by angle_delta (in degrees?). Speed of left side will not be less than 0
    */
   void TurnRight() override;
 
   /**
-   * @brief Turn the entity to the left by angle_delta (in degrees?)
+   * @brief Turn the entity to the left by angle_delta (in degrees?) Speed of right side will not be less than 0
    */
   void TurnLeft() override;
 

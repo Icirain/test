@@ -73,6 +73,7 @@ class Base : public ArenaImmobileEntity {
   void set_captured(bool state) { captured_ = state; }
 
  private:
+  // check if the base has been captured by robot already
   bool captured_;
 };
 

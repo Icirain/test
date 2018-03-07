@@ -44,6 +44,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
       "Playing",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
   new_game_button_ =
+  // Add new game button
     gui->addButton(
       "New Game",
       std::bind(&GraphicsArenaViewer::OnNewGameBtnPressed, this));
@@ -58,6 +59,8 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 // This is the primary driver for state change in the arena.
 // It will be called at each iteration of nanogui::mainloop()
 void GraphicsArenaViewer::UpdateSimulation(double dt) {
+  // Set dt equal to 0 if game over
+  if (is_game_over_) dt = 0; 
   controller_->AdvanceTime(dt);
 }
 
@@ -65,11 +68,14 @@ void GraphicsArenaViewer::UpdateSimulation(double dt) {
  * Handlers for User Keyboard and Mouse Events
  ******************************************************************************/
 void GraphicsArenaViewer::OnPlayingBtnPressed() {
-  // Not implemented. Sample code provided to show how to implement.
+  // When game is not paused, the status will be shifted, and the cation of button will be changed
+  // Command will be sent to arena through controller, is_playing will be set false in arena
   if (!paused_) {
     paused_ = true;
     controller_->AcceptCommunication(kPause);
     playing_button_->setCaption("Playing");
+  // When game is paused, button pressed will activate the game, Command kPlay will be sent to arena
+  // is_playing will be set true in arena once button pressed
   } else {
     paused_ = false;
     controller_->AcceptCommunication(kPlay);
@@ -78,15 +84,20 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
 }
 
 void GraphicsArenaViewer::OnNewGameBtnPressed() {
+    // reset necessary status of viewer
     paused_ = true;
+    is_game_over_ = false;
+    // Set the caption of button play/pause to playing
     playing_button_->setCaption("Playing");
     game_status_label_->setCaption("Game is executing");
     const struct arena_params *const params = new arena_params();
+    // A new arena will be created to start new game
     Arena *new_arena = new Arena(params);
     Arena *temp;
     temp = arena_;
     arena_ = new_arena;
     controller_->AcceptCommunication(kNewGame);
+    // Deleted old arena
     delete temp;
     new_arena = NULL;
 }
@@ -184,10 +195,14 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
 }
 
 void GraphicsArenaViewer::DrawGameStatus() {
+  // Repeatedly check the status of game
+  // Set the caption of game_status_label_  according to the game status
   if (arena_->get_game_status() == WON) {
+    is_game_over_ = true;
     game_status_label_->setCaption("Game Won");
   }
   if (arena_->get_game_status() == LOST) {
+    is_game_over_ = true;
     game_status_label_->setCaption("Game Lost");
   }
   return;
