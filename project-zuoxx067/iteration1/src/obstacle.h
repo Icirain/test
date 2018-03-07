@@ -49,11 +49,17 @@ class Obstacle : public ArenaMobileEntity {
   }
 
   void TimestepUpdate(unsigned int dt) override;
-
+  /**
+   * @brief Make obstacle reversed when collision happens and move in an arc within fixed time
+   */
   void HandleCollision(EntityType object_type, ArenaEntity * object = NULL);
-
+  /**
+   * @param[out] reference of obstacle's motion handler
+   */
   MotionHandlerObstacle get_motion_handler() {return motion_handler_; }
-
+  /**
+   * @param[out] reference of obstacle's motion behavior
+   */
   MotionBehaviorDifferential get_motion_behavior() {return motion_behavior_; }
 
  private:
