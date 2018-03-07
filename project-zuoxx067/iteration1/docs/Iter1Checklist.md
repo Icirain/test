@@ -53,7 +53,7 @@ but this status report can make it faster for us.
 | Even more obstacles | x |  |  |   |
 | Mercy invincibility is implemented | x |  |  |   |
 | For Fun |
-| King of the Hill is implemented |  |  |  |   |
+| King of the Hill is implemented |  |  |  | x |
 
 ### Documentation
 > Documentation should be in good _draft_ form.
@@ -70,12 +70,12 @@ but this status report can make it faster for us.
 
 ### Unit Tests, Linter, and Git
 - [ ] The code passes all the unit tests WITHOUT modification to the provided tests.
-- [x ] The code complies with naming conventions for classes, methods, and members.
-- [x ] There exists a history of git commit messages to show effort.
+- [x] The code complies with naming conventions for classes, methods, and members.
+- [x] There exists a history of git commit messages to show effort.
 
 ### BugReport
-- [x ] BugReport.md is in the /docs folder.
-- [x ] The report includes a list of known bugs (or states "no known bugs") for each file.
+- [x] BugReport.md is in the /docs folder.
+- [x] The report includes a list of known bugs (or states "no known bugs") for each file.
   > If you report _minor_ bugs, you will lose few to no points for that functionality.
   > If you try to hide some obvious bugs and not report them, you will lose all the points for that functionality.
 
@@ -83,7 +83,7 @@ but this status report can make it faster for us.
 
 When everything above is as you want it or it is 11:55pm on Tuesday, it is time to submit!
 
-- [x ] I pushed this file and any changes resulting from this checklist.
+- [x] I pushed this file and any changes resulting from this checklist.
 
 _One more thing -- check that what you think you pushed was really pushed to github. If you can see it, we can see it. If you can't, we can't._
 
