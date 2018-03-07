@@ -46,7 +46,7 @@ void Obstacle::HandleCollision(__unused EntityType object_type,
   sensor_touch_->HandleCollision(object_type, object);
   if (object_type == kBase || object_type == kRobot) {
      motion_handler_.set_velocity(1.5, 3.0);
-     arc_time_ = 20;
+     arc_time_ = 40;
   }
 }
 
