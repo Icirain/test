@@ -58,15 +58,15 @@ but this status report can make it faster for us.
 ### Documentation
 > Documentation should be in good _draft_ form.
 
-- [x ] _UML_ file for the iteration 1 exists in _docs_
+- [x] _UML_ file for the iteration 1 exists in _docs_
 - [x] The _UML_ reflects the current state of the code
-- [x ] _mainpage.h_ exists in _src_
-- [x ] Front page (mainpage) has a project description for programmer audience (1 to 2 pages)
-- [x ] I inspected index.html in _docs/html_ folder
-- [x ] Classes are documented in the doxygen web page class list
-- [x ] _Classes_ list has documentation for each class, including members and methods
-- [x ] I perused other classes to spot check documentation
-- [x ] I commented my code where necessary
+- [x] _mainpage.h_ exists in _src_
+- [x] Front page (mainpage) has a project description for programmer audience (1 to 2 pages)
+- [x] I inspected index.html in _docs/html_ folder
+- [x] Classes are documented in the doxygen web page class list
+- [x] _Classes_ list has documentation for each class, including members and methods
+- [x] I perused other classes to spot check documentation
+- [x] I commented my code where necessary
 
 ### Unit Tests, Linter, and Git
 - [ ] The code passes all the unit tests WITHOUT modification to the provided tests.

@@ -39,7 +39,7 @@ void MotionHandlerRobot::IncreaseSpeed() {
   ROBOT_MAX_SPEED:get_velocity().right + get_speed_delta();
   set_velocity(n_l, n_r);
 }
-
+// When function called , speed of robot will be decreased until 0
 void MotionHandlerRobot::DecreaseSpeed() {
   int n_l = get_velocity().left  - get_speed_delta() <= 0?
   0:get_velocity().left  - get_speed_delta();
@@ -47,7 +47,7 @@ void MotionHandlerRobot::DecreaseSpeed() {
   0:get_velocity().right  - get_speed_delta();
   set_velocity(n_l, n_r);
 }
-
+// When collided with anything, the direction of robot will be reversed
 void MotionHandlerRobot::UpdateVelocity() {
   if (entity_->get_touch_sensor()->get_output()) {
     entity_->RelativeChangeHeading(+180);

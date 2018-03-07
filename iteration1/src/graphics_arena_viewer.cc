@@ -60,7 +60,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 // It will be called at each iteration of nanogui::mainloop()
 void GraphicsArenaViewer::UpdateSimulation(double dt) {
   // Set dt equal to 0 if game over
-  if (is_game_over_) dt = 0; 
+  if (is_game_over_) dt = 0;
   controller_->AdvanceTime(dt);
 }
 
@@ -68,13 +68,16 @@ void GraphicsArenaViewer::UpdateSimulation(double dt) {
  * Handlers for User Keyboard and Mouse Events
  ******************************************************************************/
 void GraphicsArenaViewer::OnPlayingBtnPressed() {
-  // When game is not paused, the status will be shifted, and the cation of button will be changed
-  // Command will be sent to arena through controller, is_playing will be set false in arena
+  // When game is not paused, the status will be shifted,
+  // and the cation of button will be changed
+  // Command will be sent to arena through controller,
+  // is_playing will be set false in arena
   if (!paused_) {
     paused_ = true;
     controller_->AcceptCommunication(kPause);
     playing_button_->setCaption("Playing");
-  // When game is paused, button pressed will activate the game, Command kPlay will be sent to arena
+  // When game is paused, button pressed will activate the game,
+  // Command kPlay will be sent to arena
   // is_playing will be set true in arena once button pressed
   } else {
     paused_ = false;

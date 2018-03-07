@@ -149,11 +149,27 @@ class Arena {
    * First calls each entity's TimestepUpdate method to update their speed,
    * heading angle, and position. Then check for collisions between entities
    * or between an entity and a wall.
+   * Since the obstacles are also mobile entities already. The collision status will be pretty complex.
+   * If the checked instance is Obstacle, the function UpdateEntitiesTimestepObstacle will be called inside to do corresponding check
+   * On the contrast if robot confronted, UpdateEntitiesTimestepRobot will be called.
    */
   void UpdateEntitiesTimestep();
-
+  /**
+   *
+   * @param[in] The address of Obstacle waiting to be checked if collided with other entities
+   * The funtion will check collided stuff with obstacle. If it is a wall, the direction will be reversed.
+   * If it is a obstacle, both of them will finish an arc and seperated.
+   * If it is a robot, the speed of robot will be 0, lives remained declined. And obstacle will leave with an arc
+   *
+   */
   void UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_);
-
+  /**
+   *
+   * @param[in] The address of robot waiting to be checked if collided with other entities
+   * The funtion will check collided stuff with obstacle. If it is a wall, the direction will be reversed.
+   * If it is a obstacle, the speed will be zero and one life lost
+   *
+   */
   void UpdateEntitiesTimestepRobot(Robot* robot_entity_);
 
   std::vector<class ArenaEntity *> get_entities() const { return entities_; }
@@ -183,7 +199,9 @@ class Arena {
 
   // win/lose/playing state
   int game_status_;
+  // To count the number of base captured by robot
   int base_captured;
+  // To simulate the status that if the game is paused or playing
   bool is_playing;
 };
 
