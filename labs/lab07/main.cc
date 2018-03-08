@@ -49,12 +49,10 @@ void doInterestingThing(int yr) {
   }
 
   // now set the dates to January 2
-  for (int i = 0; i <= *array_len; i++) {
-    birthday_list = new Date(1990+i, 1, 2);
-    ++birthday_list;
+  for (int i = 0 ; i < *array_len; i++){
+    birthday_list[i] = Date(1990 + i, 1 , 2); 
   }
-  birthday_list = new Date(1990, 1 , 2);
-  cout << "the first date is: " << birthday_list->show() << endl;
+  cout << "the first date is: " << birthday_list[0].show() << endl;
 }
 
 int main() {
