@@ -1,6 +1,6 @@
 ### Feedback for Lab 04
 
-Run on March 07, 15:34:54 PM.
+Run on March 08, 00:22:53 AM.
 
 
 #### Necessary Files and Structure
@@ -52,30 +52,26 @@ Run on March 07, 15:34:54 PM.
     make successful.
     Check build/bin/robotviewer exists...OK: result build/bin/robotviewer found
 
-+ Pass: Run unit test 'build/bin/robotviewer', extra_args='', allowed_fails=0
++ Fail: Run unit test 'build/bin/robotviewer', extra_args='', allowed_fails=0
 
 
 #### Google C++ Style
 
 + Fail: Cpplint checking for for Google C++ compliance
 
-Done processing src/robot_viewer.cc
 Done processing src/robot_land.cc
 Done processing src/main.cc
+Done processing src/robot_viewer.cc
 Done processing src/robot.cc
-Done processing src/robot.h
-Done processing src/obstacle.h
-Done processing src/robot_land.h
 Done processing src/robot_viewer.h
+Done processing src/obstacle.h
+Done processing src/robot.h
+Done processing src/robot_land.h
 Total errors found: 21src/robot_viewer.cc:34:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
 src/robot_viewer.cc:68:  Missing space before {  [whitespace/braces] [5]
 src/robot.cc:7:  Include the directory when naming .h files  [build/include] [4]
 src/robot.cc:8:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
 src/robot.cc:76:  At least two spaces is best between code and comments  [whitespace/comments] [2]
-src/robot.h:5:  #ifndef header guard has wrong style, please use: SRC_ROBOT_H_  [build/header_guard] [5]
-src/robot.h:41:  #endif line should be "#endif  // SRC_ROBOT_H_"  [build/header_guard] [5]
-src/robot.h:11:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
-src/robot.h:37:  At least two spaces is best between code and comments  [whitespace/comments] [2]
 src/obstacle.h:0:  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
 src/obstacle.h:0:  No #ifndef header guard found, suggested CPP variable is: SRC_OBSTACLE_H_  [build/header_guard] [5]
 src/obstacle.h:2:  public: should be indented +1 space inside class Obstacle  [whitespace/indent] [3]
@@ -85,6 +81,10 @@ src/obstacle.h:6:  private: should be indented +1 space inside class Obstacle  [
 src/obstacle.h:7:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
 src/obstacle.h:8:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
 src/obstacle.h:8:  Add #include <utility> for pair<>  [build/include_what_you_use] [4]
+src/robot.h:5:  #ifndef header guard has wrong style, please use: SRC_ROBOT_H_  [build/header_guard] [5]
+src/robot.h:41:  #endif line should be "#endif  // SRC_ROBOT_H_"  [build/header_guard] [5]
+src/robot.h:11:  Do not use namespace using-directives.  Use using-declarations instead.  [build/namespaces] [5]
+src/robot.h:37:  At least two spaces is best between code and comments  [whitespace/comments] [2]
 src/robot_land.h:7:  #ifndef header guard has wrong style, please use: SRC_ROBOT_LAND_H_  [build/header_guard] [5]
 src/robot_land.h:177:  #endif line should be "#endif  // SRC_ROBOT_LAND_H_"  [build/header_guard] [5]
 src/robot_land.h:15:  Include the directory when naming .h files  [build/include] [4]
