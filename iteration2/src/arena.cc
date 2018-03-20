@@ -32,7 +32,7 @@ Arena::Arena(const struct arena_params *const params)
       is_playing(false) {
   AddRobot();
   AddEntity(kBase, 3);
-  AddEntity(kObstacle, params->n_obstacles);
+  AddEntity(kLights, params->n_obstacles);
 }
 
 Arena::~Arena() {
@@ -54,8 +54,8 @@ void Arena::AddEntity(EntityType type, int quantity) {
   for (int i = 0; i < quantity; i++) {
     ArenaEntity *new_entity = factory_->CreateEntity(type);
     entities_.push_back(new_entity);
-    if (type == kObstacle) {
-      Obstacle* new_obstacle = dynamic_cast<Obstacle *>(new_entity);
+    if (type == kLights) {
+      Lights* new_obstacle = dynamic_cast<Lights *>(new_entity);
       mobile_entities_.push_back(new_obstacle);
       new_obstacle = NULL;
     }
@@ -103,9 +103,9 @@ void Arena::UpdateEntitiesTimestep() {
       robot_entity_ = NULL;
     } else {
     // If a obstacle confronted,
-    // UpdateEntitiesTimestepObstacle will be called
-      Obstacle* obstacle_entity_ = dynamic_cast<Obstacle*>(ent1);
-      UpdateEntitiesTimestepObstacle(obstacle_entity_);
+    // UpdateEntitiesTimestepLights will be called
+      Lights* obstacle_entity_ = dynamic_cast<Lights*>(ent1);
+      UpdateEntitiesTimestepLights(obstacle_entity_);
       obstacle_entity_ = NULL;
     }
   }
@@ -141,8 +141,8 @@ void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
         set_game_status(WON);
       }
     }
-    if (ent->get_type() == kObstacle) {
-      Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
+    if (ent->get_type() == kLights) {
+      Lights* temp_obstacle_refer = dynamic_cast<Lights*>(ent);
       // If confronted a obstacle, HandleCollision
       // function will be called by collided obstacle
       // to let it seperated
@@ -157,7 +157,7 @@ void Arena::UpdateEntitiesTimestepRobot(Robot* robot_entity_) {
   }
 }
 
-void Arena::UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_) {
+void Arena::UpdateEntitiesTimestepLights(Lights* obstacle_entity_) {
   EntityType wall = GetCollisionWall(obstacle_entity_);
   if (kUndefined != wall) {
     AdjustWallOverlap(obstacle_entity_, wall);
@@ -182,8 +182,8 @@ void Arena::UpdateEntitiesTimestepObstacle(Obstacle* obstacle_entity_) {
       }
       temp_robot_refer = NULL;
     }
-    if (ent->get_type() == kObstacle) {
-      Obstacle* temp_obstacle_refer = dynamic_cast<Obstacle*>(ent);
+    if (ent->get_type() == kLights) {
+      Lights* temp_obstacle_refer = dynamic_cast<Lights*>(ent);
       // Both obstacles will leave with already set arc
       temp_obstacle_refer->HandleCollision(obstacle_entity_->get_type(),
         obstacle_entity_);

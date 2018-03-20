@@ -34,17 +34,17 @@ NAMESPACE_BEGIN(csci3081);
  * The factory randomly places entities, and in doing so, attempts to not
  * have them overlap.
  */
-class MotionHandlerObstacle : public MotionHandler {
+class MotionHandlerLights : public MotionHandler {
  public:
 /**
  *@brief Default constructor for MontionHandler
  */
-  explicit MotionHandlerObstacle(ArenaMobileEntity * ent)
+  explicit MotionHandlerLights(ArenaMobileEntity * ent)
       : MotionHandler(ent) {this->set_velocity(3.0, 3.0); }
 
-  MotionHandlerObstacle(const MotionHandlerObstacle& other) = default;
-  MotionHandlerObstacle& operator=
-  (const MotionHandlerObstacle& other) = default;
+  MotionHandlerLights(const MotionHandlerLights& other) = default;
+  MotionHandlerLights& operator=
+  (const MotionHandlerLights& other) = default;
   /**
   *Currently called from arena to update the speed and pose of obstacle.
   */

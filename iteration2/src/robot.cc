@@ -65,7 +65,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
     return;
     // lives will be deducted iff robot is
     // out of mercy_time_ when mercy_time_ is 0
-  } else if (object_type == kObstacle && mercy_time_ == 0) {
+  } else if (object_type == kLights && mercy_time_ == 0) {
     int lives_remained = get_lives();
     set_lives(lives_remained <= 0? 0 : lives_remained - 1);
     // When collided with an obstacle ,
