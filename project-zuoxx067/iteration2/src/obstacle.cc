@@ -18,17 +18,17 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Constructors/Destructor
  ******************************************************************************/
-Obstacle::Obstacle() :
+Lights::Lights() :
     motion_handler_(this),
     motion_behavior_(this),
     arc_time_(0) {
   set_color(OBSTACLE_COLOR);
   set_pose(OBSTACLE_POSITION);
   set_radius(OBSTACLE_RADIUS);
-  set_type(kObstacle);
+  set_type(kLights);
 }
 
-void Obstacle::TimestepUpdate(unsigned int dt) {
+void Lights::TimestepUpdate(unsigned int dt) {
   if (arc_time_ > 0) {
     arc_time_ -= dt;
     if (arc_time_ == 0) {
@@ -41,13 +41,13 @@ void Obstacle::TimestepUpdate(unsigned int dt) {
   sensor_touch_->Reset();
 }
 
-void Obstacle::HandleCollision(__unused EntityType object_type,
+void Lights::HandleCollision(__unused EntityType object_type,
                                __unused ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   if (object_type == kBase || object_type == kRobot ||
-      object_type == kObstacle) {
-    // To implenment the arc of obstacle when collided.
-    // In a fixed time the two wheel' speed of obstacle
+      object_type == kLights) {
+    // To implenment the arc of light when collided.
+    // In a fixed time the two wheel' speed of light
     // will be different to have an arc
      motion_handler_.set_velocity(1.5, 3.0);
      arc_time_ = 40;

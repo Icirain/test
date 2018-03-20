@@ -29,41 +29,41 @@ NAMESPACE_BEGIN(csci3081);
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief Class representing an immobile obstacle within the Arena.
+ * @brief Class representing an immobile light within the Arena.
  *
- * Since obstacles are immobile, the Obstacle class is very simple.
+ * Since lights are immobile, the Lights class is very simple.
  */
-class Obstacle : public ArenaMobileEntity {
+class Lights : public ArenaMobileEntity {
  public:
   /**
    * @brief Constructor.
    */
-  Obstacle();
+  Lights();
 
   /**
-   * @brief Get the name of the Obstacle for visualization purposes, and to
+   * @brief Get the name of the Lights for visualization purposes, and to
    * aid in debugging.
    */
   std::string get_name() const override {
-    return "Obstacle" + std::to_string(get_id());
+    return "Lights" + std::to_string(get_id());
   }
 
   void TimestepUpdate(unsigned int dt) override;
   /**
-   * @brief Make obstacle reversed when collision happens and move in an arc within fixed time
+   * @brief Make light reversed when collision happens and move in an arc within fixed time
    */
   void HandleCollision(EntityType object_type, ArenaEntity * object = NULL);
   /**
-   * @param[out] reference of obstacle's motion handler
+   * @param[out] reference of light's motion handler
    */
-  MotionHandlerObstacle get_motion_handler() {return motion_handler_; }
+  MotionHandlerLights get_motion_handler() {return motion_handler_; }
   /**
-   * @param[out] reference of obstacle's motion behavior
+   * @param[out] reference of light's motion behavior
    */
   MotionBehaviorDifferential get_motion_behavior() {return motion_behavior_; }
 
  private:
-  MotionHandlerObstacle motion_handler_;
+  MotionHandlerLights motion_handler_;
   MotionBehaviorDifferential motion_behavior_;
   int arc_time_;
 };

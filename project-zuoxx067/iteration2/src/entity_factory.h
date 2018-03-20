@@ -70,9 +70,9 @@ class EntityFactory {
   Robot* CreateRobot();
 
   /**
-  * @brief CreateObstacle called from within CreateEntity.
+  * @brief CreateLights called from within CreateEntity.
   */
-  Obstacle* CreateObstacle();
+  Lights* CreateLights();
 
   /**
   * @brief CreateBase called from within CreateEntity.

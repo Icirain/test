@@ -18,7 +18,7 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Member Functions
  ******************************************************************************/
-void MotionHandlerObstacle::UpdateVelocity() {
+void MotionHandlerLights::UpdateVelocity() {
   if (entity_->get_touch_sensor()->get_output()) {
     entity_->RelativeChangeHeading(+180);
   }
